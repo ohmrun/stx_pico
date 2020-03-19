@@ -3,7 +3,7 @@ package stx.pico;
 import stx.pico.option.Constructor;
 
 @:using(stx.pico.option.Implementation)
-abstract Option<T>(OptionDef<T>) from OptionDef<T>{
+abstract Option<T>(OptionDef<T>) from OptionDef<T> to OptionDef<T>{
   static public inline function _() return Constructor.ZERO;
 
   public function new(self) this = self;

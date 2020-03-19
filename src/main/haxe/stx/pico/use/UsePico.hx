@@ -7,15 +7,6 @@ class UsePico{
       default   : Some(v);
     }
   }
-  static public function success<T,E>(wildcard:Wildcard,t:T):Res<T,E>{
-    return Res.success(t);
-  }
-  static public function failure<T,E>(wildcard:Wildcard,e:Err<E>):Res<T,E>{
-    return Res.failure(e);
-  }
-  static public function fault(stx:Wildcard,?pos:Pos):Fault{
-    return new Fault(pos);
-  }
   /**
 		Returns a unique identifier, each `x` replaced with a hex character.
 	**/
@@ -37,28 +28,6 @@ class UsePico{
       var out = "/";
     #end
     return out;
-  }
-  /**
-    make Some(Couple<L,R>) if Option<L> is defined;
-  **/
-  static public function lbump<L,R>(wildcard:Wildcard,tp:Couple<Option<L>,R>):Option<Couple<L,R>>{
-    return tp.decouple(
-      (lhs,rhs) -> lhs.fold(
-        (l) -> Some(__.couple(l,rhs)),
-        ()  -> None
-      )
-    );
-  }
-  /**
-    make Some(Couple<L,R>) if Option<R> is defined;
-  **/
-  static public function rbump<L,R>(wildcard:Wildcard,tp:Couple<L,Option<R>>):Option<Couple<L,R>>{
-    return tp.decouple(
-      (lhs,rhs) -> rhs.fold(
-        r   -> (Some(__.couple(lhs,r))),
-        ()  -> None
-      )
-    );
   }
   static public function test(wildcard:Wildcard,arr:Iterable<haxe.unit.TestCase>){
     var runner = new haxe.unit.TestRunner();
