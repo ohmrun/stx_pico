@@ -1,4 +1,8 @@
--cp src
--D analyzer-optimize
+-lib hx3compat
+-cp src/main/haxe
+
+--dce no
+
 -main Main
---interp
+-js test.js
+
