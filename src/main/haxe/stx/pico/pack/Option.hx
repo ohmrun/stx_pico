@@ -1,9 +1,9 @@
-package stx.pico;
+package stx.pico.pack;
 
-import stx.pico.option.Constructor;
+import stx.pico.pack.option.Constructor;
 
-@:using(stx.pico.option.Implementation)
-abstract Option<T>(OptionDef<T>) from OptionDef<T> to OptionDef<T>{
+@:using(stx.pico.pack.option.Implementation)
+abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
   static public inline function _() return Constructor.ZERO;
 
   public function new(self) this = self;

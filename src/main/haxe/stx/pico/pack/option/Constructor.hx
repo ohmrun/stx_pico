@@ -1,4 +1,4 @@
-package stx.pico.option;
+package stx.pico.pack.option;
 
 class Constructor extends Clazz{
   static public var ZERO(default,never) = new Constructor();

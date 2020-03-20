@@ -1,4 +1,4 @@
-package stx.pico.either;
+package stx.pico.pack.either;
 
 class Implementation{
   static public function _() return Either._()._;

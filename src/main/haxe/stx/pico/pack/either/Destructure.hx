@@ -1,4 +1,4 @@
-package stx.pico.either;
+package stx.pico.pack.either;
 
 class Destructure extends Clazz{
   public function fold<Pi,Pii,Ri>(lhs:Pi->Ri,rhs:Pii->Ri,self:Either<Pi,Pii>):Ri{

@@ -1,5 +1,6 @@
 package stx.pico;
 
-using Lambda;
+import stx.pico.alias.StdArray;
 
-using stx.Pico;
+using stx.pico.Pack;
+using Lambda;

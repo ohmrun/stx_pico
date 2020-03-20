@@ -1,4 +1,4 @@
-using stx.Pico;
+using stx.pico.Pack;
 
 class Main {
 	static function main() {

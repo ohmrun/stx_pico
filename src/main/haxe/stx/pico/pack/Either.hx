@@ -1,7 +1,7 @@
-package stx.pico;
+package stx.pico.pack;
 
-import stx.pico.either.Constructor;
-@:using(stx.pico.either.Implementation)
+import stx.pico.pack.either.Constructor;
+@:using(stx.pico.pack.either.Implementation)
 @:forward abstract Either<Pi,Pii>(EitherDef<Pi,Pii>) from EitherDef<Pi,Pii> to EitherDef<Pi,Pii>{
   static public inline function _() return Constructor.ZERO;
   public function new(self) this = self;

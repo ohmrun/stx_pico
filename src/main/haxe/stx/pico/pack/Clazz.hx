@@ -1,4 +1,4 @@
-package stx.pico;
+package stx.pico.pack;
 
 class Clazz{
   public function new(){}
