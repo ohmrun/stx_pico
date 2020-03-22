@@ -2,6 +2,7 @@ package stx.core.pack;
 
 import stx.core.pack.option.Constructor;
 
+@:expose("stx.Option")
 @:using(stx.core.pack.option.Implementation)
 abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
   static public inline function _() return Constructor.ZERO;

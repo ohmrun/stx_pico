@@ -2,6 +2,7 @@ package stx.core.pack;
 
 import stx.core.pack.outcome.Constructor;
 
+@:expose("stx.Outcome")
 abstract Outcome<T,E>(OutcomeSum<T,E>) from OutcomeSum<T,E> to OutcomeSum<T,E>{
   public function new(self) this = self;
   static public function _() return Constructor.ZERO;

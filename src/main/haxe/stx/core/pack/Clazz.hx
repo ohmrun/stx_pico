@@ -1,5 +1,6 @@
 package stx.core.pack;
 
+@:expose("stx.Clazz")
 class Clazz{
   public function new(){}
   public function definition():Class<Dynamic>{

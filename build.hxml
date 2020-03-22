@@ -1,8 +1,8 @@
 -lib hx3compat
+
 -cp src/main/haxe
 
 --dce no
 
 -main Main
--js test.js
-
+-js bin/pico.js

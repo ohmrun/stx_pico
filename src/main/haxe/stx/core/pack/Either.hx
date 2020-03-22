@@ -1,6 +1,8 @@
 package stx.core.pack;
 
 import stx.core.pack.either.Constructor;
+
+@:expose("stx.Either")
 @:using(stx.core.pack.either.Implementation)
 @:forward abstract Either<Pi,Pii>(EitherDef<Pi,Pii>) from EitherDef<Pi,Pii> to EitherDef<Pi,Pii>{
   static public inline function _() return Constructor.ZERO;

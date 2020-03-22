@@ -124,9 +124,7 @@ class Destructure extends Clazz{
       }
     );
   }
-  /**
-		Produces a `Tuple2` containing two `Array`, the left being elements where `f(e) == true`, the rest in the right.
-	**/
+  @stx.doc("Produces a `Tuple2` containing two `Array`, the left being elements where `f(e) == true`, the rest in the right.")
   @params('The array to partition','A predicate')
   public inline function partition<T>(f: T -> Bool,self: StdArray<T>): { a : StdArray<T>, b :  StdArray<T> } {
     return self.lfold(function(next,memo:{ a : StdArray<T>, b : StdArray<T> } ) {
