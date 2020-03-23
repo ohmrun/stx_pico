@@ -1,25 +1,48 @@
 package stx.core.pack;
 
-import stx.core.pack.outcome.Constructor;
 
-@:expose("stx.Outcome")
+enum OutcomeSum<T,E>{
+  Success(t:T);
+  Failure(e:E);
+}
+
+@:using(stx.core.pack.Outcome.OutcomeLift)
 abstract Outcome<T,E>(OutcomeSum<T,E>) from OutcomeSum<T,E> to OutcomeSum<T,E>{
   public function new(self) this = self;
-  static public function _() return Constructor.ZERO;
+  static public var _(default,never) = OutcomeLift;
 
-  static public function lift<T,E>(self:OutcomeSum<T,E>):Outcome<T,E>         return _().lift(self);
-  static public function success<T,E>(t:T):Outcome<T,E>                       return _().success(t);
-  static public function failure<T,E>(e:E):Outcome<T,E>                       return _().failure(e);
+  static public function lift<T,E>(self:OutcomeSum<T,E>):Outcome<T,E> return new Outcome(self);
 
-  public function map<TT>(fn:T->TT)                                           return _()._.map(fn,self);
-  public function flat_map<TT>(fn:T->Outcome<TT,E>)                           return _()._.flat_map(fn,self);
-  public function fold<Z>(fn:T->Z,er:E->Z):Z                                  return _()._.fold(fn,er,self);
-  
-  public function fudge():T                                                   return _()._.fudge(self);
-  public function elide():Outcome<Dynamic,E>                                  return _()._.elide(this);
-
+  static public function success<T,E>(t:T):Outcome<T,E>{
+    return lift(Success(t));
+  }
+  static public function failure<T,E>(e:E):Outcome<T,E>{
+    return lift(Failure(e));
+  }
   public function prj():OutcomeSum<T,E> return this;
   private var self(get,never):Outcome<T,E>;
   private function get_self():Outcome<T,E> return lift(this);
 }
-
+class OutcomeLift{
+  static public function map<T,E,TT>(self:OutcomeSum<T,E>,fn:T->TT):Outcome<TT,E>{
+    return flat_map(self,(x) -> Success(fn(x)));
+  }
+  static public function flat_map<T,E,TT>(self:OutcomeSum<T,E>,fn:T->OutcomeSum<TT,E>):Outcome<TT,E>{
+    return Outcome.lift(fold(self,(t) -> fn(t),(e) -> Failure(e)));
+  }
+  static public function fold<T,E,TT>(self:OutcomeSum<T,E>,fn:T->TT,er:E->TT):TT{
+    return switch(self){
+      case Success(t) : fn(t);
+      case Failure(e) : er(e);
+    }
+  }
+  static public function fudge<T,E>(self:OutcomeSum<T,E>):T{
+    return fold(self,(t) -> t,(e) -> throw(e));
+  }
+  static public function elide<T,E>(self:OutcomeSum<T,E>):Outcome<Dynamic,E>{
+    return fold(self,
+      (t) -> Failure((t:Dynamic)),
+      (e) -> Success(e)
+    );
+  }
+}
