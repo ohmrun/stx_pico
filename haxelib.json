@@ -5,13 +5,13 @@
         "cross",
         "functional"
     ],
-    "description": "Functional composition tools. Haxe 3.1.* required.",
+    "description": "The core of stx.core. Stuff you can't do without, but might already have.",
     "contributors": [
         "0b1kn00b"
     ],
-    "releasenote": "Wow, can post past version. oops",
+    "releasenote": "happy to publish",
     "version": "0.1.0",
-    "url": "https://github.com/0b1kn00b/stx_pointwise",
+    "url": "https://github.com/ohmrun/stx_pico",
     "dependencies": {
         
     },

@@ -4,7 +4,7 @@ typedef OptionSum<T> = haxe.ds.Option<T>;
 
 @:using(stx.core.pack.Option.OptionLift)
 abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
-  static public inline function _() return OptionLift;
+  static public var _(default,never) = OptionLift;
 
   public function new(self) this = self;
   @:noUsing @:from static public function fromNullT<T>(v:Null<T>):Option<T> return Option.make(v);
