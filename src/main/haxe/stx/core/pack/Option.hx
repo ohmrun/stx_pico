@@ -27,8 +27,10 @@ abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
 }
 class OptionLift{
   static public function fold<T,TT>(self:OptionSum<T>,ok:T->TT,no:Void->TT):TT{
-    var ou : OptionSum<TT> = self.map(ok);
-    return def(ou,no);
+    return switch(self){
+      case Some(t)  : ok(t);
+      case None     : no();
+     }
   }
   /**
 	 * Performs `f` on the contents of `self` if `self != None`
@@ -57,6 +59,7 @@ class OptionLift{
 	**/
   static public function def<T>(self: OptionSum<T>, thunk: Void->T): T {
     return switch(self){
+
       case Some(v)  : v;
       default       : thunk();
     }
