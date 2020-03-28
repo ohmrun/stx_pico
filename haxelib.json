@@ -9,8 +9,8 @@
     "contributors": [
         "0b1kn00b"
     ],
-    "releasenote": "happy to publish",
-    "version": "0.1.0",
+    "releasenote": "Option._.foldv",
+    "version": "0.1.1",
     "url": "https://github.com/ohmrun/stx_pico",
     "dependencies": {
         

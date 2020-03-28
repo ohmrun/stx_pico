@@ -32,6 +32,9 @@ class OptionLift{
       case None     : no();
      }
   }
+  static public function foldv<T,TT>(self:OptionSum<T>,ok:T->TT,no:TT):TT{
+    return fold(self,ok,()->no);
+  }
   /**
 	 * Performs `f` on the contents of `self` if `self != None`
 	**/

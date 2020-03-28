@@ -2,6 +2,15 @@ package stx;
 
 #if !stx_core
 
+typedef StdType                 = std.Type;
+typedef StdInt                  = Int;
+typedef StdBool                 = Bool;
+typedef StdString               = String;
+typedef StdFloat                = Float;
+typedef StdDate                 = std.Date;
+typedef StdOption<T>            = haxe.ds.Option<T>;
+typedef StdEnumValue            = std.EnumValue;
+
 typedef Clazz                   = stx.core.pack.Clazz;
 
 typedef OptionSum<T>            = stx.core.pack.Option.OptionSum<T>;
