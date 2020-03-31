@@ -129,7 +129,7 @@ class ArrayLift{
    * @return option
   **/  
   static public function last<T>(self:StdArray<T>):Option<T>{
-    var v = self[self.length > 0 ? self.length : 0];
+    var v   = self[self.length > 0 ? self.length - 1 : 0];
     return v == null ? None : Some(v);
   }
 

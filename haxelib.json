@@ -9,8 +9,8 @@
     "contributors": [
         "0b1kn00b"
     ],
-    "releasenote": "Option._.foldv",
-    "version": "0.1.1",
+    "releasenote": "Array._.last off by one error fixed",
+    "version": "0.1.2",
     "url": "https://github.com/ohmrun/stx_pico",
     "dependencies": {
         

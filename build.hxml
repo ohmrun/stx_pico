@@ -2,7 +2,6 @@
 
 -cp src/main/haxe
 
---dce no
 
 -main Main
--js bin/pico.js
+-js test.js
