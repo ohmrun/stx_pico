@@ -13,10 +13,10 @@ abstract Outcome<T,E>(OutcomeSum<T,E>) from OutcomeSum<T,E> to OutcomeSum<T,E>{
 
   static public function lift<T,E>(self:OutcomeSum<T,E>):Outcome<T,E> return new Outcome(self);
 
-  static public function success<T,E>(t:T):Outcome<T,E>{
+  @:noUsing static public function success<T,E>(t:T):Outcome<T,E>{
     return lift(Success(t));
   }
-  static public function failure<T,E>(e:E):Outcome<T,E>{
+  @:noUsing static public function failure<T,E>(e:E):Outcome<T,E>{
     return lift(Failure(e));
   }
   public function prj():OutcomeSum<T,E> return this;
