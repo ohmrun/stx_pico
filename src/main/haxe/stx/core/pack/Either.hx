@@ -1,5 +1,7 @@
 package stx.core.pack;
 
+typedef EitherSum<Ti,Tii>       = haxe.ds.Either<Ti,Tii>;
+
 @:using(stx.core.pack.Either.EitherLift)
 @:forward abstract Either<Pi,Pii>(EitherSum<Pi,Pii>) from EitherSum<Pi,Pii> to EitherSum<Pi,Pii>{
   static public var _ (default,never) = EitherLift;

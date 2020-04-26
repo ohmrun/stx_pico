@@ -1,37 +1,11 @@
-package stx.core.pack;
+package stx.lift;
 
 import haxe.Constraints.IMap;
 
-@:expose
-@:using(stx.core.pack.Array.ArrayLift)
-@:forward abstract Array<T>(std.Array<T>) from std.Array<T> to std.Array<T>{
-  static public var _(default,never) = ArrayLift;
 
-  static public var ZERO(default,null) : Array<Dynamic> = [];
-  public function new(self) this = self;
-  @:arrayAccess public function get(v:Int) return this[v];
-
-  ////////////////////////Constructor/////////////////////////
-  /** 
-    Empty Array.
-  **/
-  static public function unit<T>():Array<T>{
-    return [];
-  }
-  /** 
-    Create an Array with the element `t`.
-  **/
-  @:noUsing static public function one<T>(t:T):Array<T>{
-    return [t];
-  }
+class ArrayLift{
   /**
-    Create an Array with the element `t`.
-  **/
-  @:noUsing static public function pure<T>(t:T):Array<T>{
-    return [t];
-  }
-  /**
-    Produces an Array from an Array of Arrays.
+    * Produces an Array from an Array of Arrays.
   **/
   static public function flatten<T>(arrs: Array<Array<T>>): Array<T> {
     var res : StdArray<T> = [];
@@ -64,8 +38,6 @@ import haxe.Constraints.IMap;
     }
     return res;
   }
-}
-class ArrayLift{
   /**
 		* Return true if the length of `self` is greater than 0.
 	**/

@@ -12,7 +12,7 @@ abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
   /**
 	 * Produces Option.Some(t) if `t` is not null, Option.None otherwise.
 	**/
-  static public function make<T>(t: T): Option<T> {
+  @:noUsing static public function make<T>(t: T): Option<T> {
     return if (t == null) None; else Some(t);
   }
   /**

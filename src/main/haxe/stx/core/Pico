@@ -1,7 +1,8 @@
-package stx;
+package stx.core;
 
-#if !stx_core
+//Version for self. I
 
+typedef StdArray<T>             = std.Array<T>;
 typedef StdType                 = std.Type;
 typedef StdInt                  = Int;
 typedef StdBool                 = Bool;
@@ -17,15 +18,13 @@ typedef OptionSum<T>            = stx.core.pack.Option.OptionSum<T>;
 typedef Option<T>               = stx.core.pack.Option<T>;
 typedef OptionLift              = stx.core.pack.Option.OptionLift;
 
-typedef EitherSum<Ti,Tii>       = stx.core.pack.Either.EitherSum<Ti,Tii>;
+typedef EitherSum<Ti,Tii>       = haxe.ds.Either<Ti,Tii>;
 typedef Either<Ti,Tii>          = stx.core.pack.Either<Ti,Tii>;
 typedef EitherLift              = stx.core.pack.Either.EitherLift;
 
 typedef OutcomeSum<T,E>         = stx.core.pack.Outcome.OutcomeSum<T,E>;
 typedef Outcome<T,E>            = stx.core.pack.Outcome<T,E>;
 
-typedef ArrayLift               = stx.lift.ArrayLift;
+typedef ArrayLift               = stx.core.pack.Array.ArrayLift;
 
 typedef UsePico                 = stx.core.use.UsePico;
-
-#end
