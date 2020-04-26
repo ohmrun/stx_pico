@@ -1,7 +1,5 @@
 package stx;
 
-#if !stx_core
-
 typedef StdType                 = std.Type;
 typedef StdInt                  = Int;
 typedef StdBool                 = Bool;
@@ -10,6 +8,7 @@ typedef StdFloat                = Float;
 typedef StdDate                 = std.Date;
 typedef StdOption<T>            = haxe.ds.Option<T>;
 typedef StdEnumValue            = std.EnumValue;
+typedef StdArray<T>             = std.Array<T>;
 
 typedef Clazz                   = stx.core.pack.Clazz;
 
@@ -25,7 +24,3 @@ typedef OutcomeSum<T,E>         = stx.core.pack.Outcome.OutcomeSum<T,E>;
 typedef Outcome<T,E>            = stx.core.pack.Outcome<T,E>;
 
 typedef ArrayLift               = stx.lift.ArrayLift;
-
-typedef UsePico                 = stx.core.use.UsePico;
-
-#end
