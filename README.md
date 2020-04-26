@@ -66,7 +66,7 @@ supply handlers for the cases and retrieve one ore other values.
 
 ```haxe
 static public function map<T, TT>(self: OptionSum<T>,f: T -> TT):Option<TT>
-
+```
 Performs `f` on the contents of `self` if `self != None`
 
 
