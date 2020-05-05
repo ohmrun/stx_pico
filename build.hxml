@@ -2,6 +2,5 @@
 
 -cp src/main/haxe
 
-
 -main Main
--js test.js
+--interp
