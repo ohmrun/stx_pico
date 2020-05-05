@@ -35,14 +35,14 @@ var b = a.map(
   
 
 ```haxe
-f:noUsing dunction make<T>(t: T): Option<T> 
+function make<T>(t: T): Option<T> 
 ```
 
 Produces `Some(t)` if `t` is not null, `None` otherwise.
 
 
 ```haxe
-f:noUsing @:from dunction fromNullT<T>(v:Null<T>):Option<T>
+function fromNullT<T>(v:Null<T>):Option<T>
 ```
 
 
