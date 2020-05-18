@@ -1,6 +1,5 @@
 package stx;
 
-typedef StdType                 = std.Type;
 typedef StdInt                  = Int;
 typedef StdBool                 = Bool;
 typedef StdString               = String;
