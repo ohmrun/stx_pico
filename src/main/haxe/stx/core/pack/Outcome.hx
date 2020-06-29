@@ -30,13 +30,13 @@ class OutcomeLift{
   static public function flat_map<T,E,TT>(self:OutcomeSum<T,E>,fn:T->OutcomeSum<TT,E>):Outcome<TT,E>{
     return Outcome.lift(fold(self,(t) -> fn(t),(e) -> Failure(e)));
   }
-  static public function fold<T,E,TT>(self:OutcomeSum<T,E>,fn:T->TT,er:E->TT):TT{
+  inline static public function fold<T,E,TT>(self:OutcomeSum<T,E>,fn:T->TT,er:E->TT):TT{
     return switch(self){
       case Success(t) : fn(t);
       case Failure(e) : er(e);
     }
   }
-  static public function fudge<T,E>(self:OutcomeSum<T,E>):T{
+  static inline public function fudge<T,E>(self:OutcomeSum<T,E>):T{
     return fold(self,(t) -> t,(e) -> throw(e));
   }
   static public function elide<T,E>(self:OutcomeSum<T,E>):Outcome<Dynamic,E>{
