@@ -502,7 +502,9 @@ class ArrayLift{
     var index = 0;
 
     for (e in self) {
-      if (t(e)) return index;
+      if (t(e)){
+        break;
+      }
 
       ++index;
     }

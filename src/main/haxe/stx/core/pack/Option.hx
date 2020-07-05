@@ -9,6 +9,12 @@ abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
   public function new(self) this = self;
   @:noUsing @:from static public function fromNullT<T>(v:Null<T>):Option<T> return Option.make(v);
 
+  @:noUsing static public function unit<T>():Option<T>{
+    return None;
+  }
+  @:noUsing static public function pure<T>(t:T):Option<T>{
+    return Some(t);
+  }
   /**
 	 * Produces Option.Some(t) if `t` is not null, Option.None otherwise.
 	**/
