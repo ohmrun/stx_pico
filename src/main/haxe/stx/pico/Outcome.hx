@@ -1,4 +1,4 @@
-package stx.core.pack;
+package stx.pico;
 
 
 enum OutcomeSum<T,E>{
@@ -6,7 +6,7 @@ enum OutcomeSum<T,E>{
   Failure(e:E);
 }
 
-@:using(stx.core.pack.Outcome.OutcomeLift)
+@:using(stx.pico.Outcome.OutcomeLift)
 abstract Outcome<T,E>(OutcomeSum<T,E>) from OutcomeSum<T,E> to OutcomeSum<T,E>{
   public function new(self) this = self;
   static public var _(default,never) = OutcomeLift;

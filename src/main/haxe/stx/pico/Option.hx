@@ -1,8 +1,8 @@
-package stx.core.pack;
+package stx.pico;
 
 typedef OptionSum<T> = haxe.ds.Option<T>;
 
-@:using(stx.core.pack.Option.OptionLift)
+@:using(stx.pico.Option.OptionLift)
 abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
   static public var _(default,never) = OptionLift;
 

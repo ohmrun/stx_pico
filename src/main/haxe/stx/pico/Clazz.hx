@@ -1,4 +1,4 @@
-package stx.core.pack;
+package stx.pico;
 
 @:expose("stx.Clazz")
 class Clazz{
