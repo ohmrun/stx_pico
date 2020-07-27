@@ -10,6 +10,13 @@ typedef EitherSum<Ti,Tii>       = haxe.ds.Either<Ti,Tii>;
   static public function lift<Pi,Pii>(self:EitherSum<Pi,Pii>):Either<Pi,Pii> return new Either(self);
   
 
+  @:noUsing inline static public function left<Ti,Tii>(tI:Ti):Either<Ti,Tii>{
+    return Left(tI);
+  }
+  @:noUsing inline static public function right<Ti,Tii>(tII:Tii):Either<Ti,Tii>{
+    return Right(tII);
+  }
+
   public function prj():EitherSum<Pi,Pii> return this;
 }
 class EitherLift{

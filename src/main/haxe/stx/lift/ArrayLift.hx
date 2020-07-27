@@ -500,16 +500,18 @@ class ArrayLift{
 	**/
   static public inline function index_of<T>(self: StdArray<T>, t: T->Bool): Int {
     var index = 0;
+    var ok    = false;
 
     for (e in self) {
       if (t(e)){
+        ok = true;
         break;
       }
 
       ++index;
     }
 
-    return -1;
+    return ok ? index : -1;
   }
   /**
 	 * Determines if a value is contained in `self` by identity.

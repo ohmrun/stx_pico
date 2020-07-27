@@ -3,4 +3,4 @@
 -cp src/main/haxe
 
 -main Main
---interp
+--cpp bin/cpp
