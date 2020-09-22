@@ -123,5 +123,11 @@ class OptionLift{
       case Some(v): [v];
     }
   }
+  static public function fudge<T>(self:Option<T>):T{
+    return fold(self,
+      (x) -> x,
+      ()  -> throw 'empty Option'  
+    );
+  }
   static public function prj<T>(self:Option<T>):haxe.ds.Option<T>                                 return self;
 }

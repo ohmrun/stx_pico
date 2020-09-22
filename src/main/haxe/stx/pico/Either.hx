@@ -47,4 +47,17 @@ class EitherLift{
   static public function flip<Ti,Tii>(self:Either<Ti,Tii>):Either<Tii,Ti>{
     return fold(self,(l) -> Right(l),(r) -> Left(r));
   }
+
+  static public function get_data<T>(self:Either<T,T>):T{
+    return self.fold(
+      (x) -> x,
+      (x) -> x
+    );
+  }
+  static public function is_left<Ti,Tii>(self:Either<Ti,Tii>){
+    return fold(self,_ -> true,_ -> false);
+  }
+  static public function is_right<Ti,Tii>(self:Either<Ti,Tii>){
+    return fold(self,_ -> false,_ -> true);
+  }
 }
