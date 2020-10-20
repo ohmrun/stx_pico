@@ -1,5 +1,6 @@
 package stx.pico;
 
+@:using(stx.pico.Option.OptionLift)
 typedef OptionSum<T> = haxe.ds.Option<T>;
 
 @:using(stx.pico.Option.OptionLift)
@@ -29,6 +30,9 @@ abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
       case None       : None;
       case Some(next) : next;
     }
+  }
+  public function toString(){
+    return _.toString(this);
   }
 }
 class OptionLift{
@@ -127,6 +131,13 @@ class OptionLift{
     return fold(self,
       (x) -> x,
       ()  -> throw 'empty Option'  
+    );
+  }
+  static public function toString<T>(self:Option<T>){
+    return fold(
+      self,
+      x   -> '$x',
+      ()  -> '<undefined>'
     );
   }
   static public function prj<T>(self:Option<T>):haxe.ds.Option<T>                                 return self;
