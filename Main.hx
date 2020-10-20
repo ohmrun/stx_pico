@@ -1,9 +1,9 @@
 using stx.Pico;
 
+import stx.pico.Test;
+
 class Main {
 	static function main() {
-		trace("MAIN");
+		stx.pico.Test.main();
 	}
 }
-
-class Test{}

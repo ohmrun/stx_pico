@@ -1,4 +1,6 @@
-* 	 f148dfe 2020-09-29  (HEAD -> master) added CHANGELOG.md
+* 	 b392a7c 2020-10-20  (HEAD -> master) fix: trying to get toString to call reliably inside Option
+* 	 bb1b6f6 2020-10-20  sensible changelog
+* 	 f148dfe 2020-09-29  added CHANGELOG.md
 * 	 8a130cf 2020-09-25  (tag: v1.0.0, github/master) 1.0
 * 	 550fbce 2020-09-22  Either is_left is_right and Option fudge
 * 	 7777347 2020-07-27  pulled package down
