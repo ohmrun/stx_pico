@@ -39,7 +39,7 @@ class OptionLift{
   /**
    * Supply handlers for the cases and retrieve one ore other values.
   **/
-  static public function fold<T,TT>(self:OptionSum<T>,ok:T->TT,no:Void->TT):TT{
+  static public inline function fold<T,TT>(self:OptionSum<T>,ok:T->TT,no:Void->TT):TT{
     return switch(self){
       case Some(t)  : ok(t);
       case None     : no();
@@ -73,9 +73,8 @@ class OptionLift{
   /**
 	 * Produces the value of `self` if not `None`, the result of `thunk` otherwise.
 	**/
-  static public function def<T>(self: OptionSum<T>, thunk: Void->T): T {
+  static public inline function def<T>(self: OptionSum<T>, thunk: Void->T): T {
     return switch(self){
-
       case Some(v)  : v;
       default       : thunk();
     }
@@ -83,8 +82,11 @@ class OptionLift{
   /**
    * Returns the inner value of `self` or the value `v` if `self ` is `None`
   **/
-  static public function defv<T>(self:OptionSum<T>,v:T):T
-    return def(self,()->v);
+  static public inline function defv<T>(self:OptionSum<T>,v:T):T
+    return switch(self){
+      case Some(v)  : v;
+      default       : v;
+    }
   
   /**
     returns `true` if self is `Some(v)`, `false` otherwise.

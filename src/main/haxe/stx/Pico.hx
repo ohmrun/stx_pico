@@ -1,25 +1,27 @@
 package stx;
 
+typedef StdArray<T>             = std.Array<T>;
+typedef StdString               = std.String;
 typedef StdInt                  = Int;
-typedef StdBool                 = Bool;
-typedef StdString               = String;
 typedef StdFloat                = Float;
-typedef StdDate                 = std.Date;
+typedef StdBool                 = Bool;
+typedef StdDate                 = Date;
 typedef StdOption<T>            = haxe.ds.Option<T>;
 typedef StdEnumValue            = std.EnumValue;
-typedef StdArray<T>             = std.Array<T>;
 
-typedef Clazz                   = stx.pico.Clazz;
-
-typedef OptionSum<T>            = stx.pico.Option.OptionSum<T>;
+typedef OptionSum<T>            = stx.pico.Option.OptionSum<T>;//Publish Constructors.
 typedef Option<T>               = stx.pico.Option<T>;
-typedef OptionLift              = stx.pico.Option.OptionLift;
 
 typedef EitherSum<Ti,Tii>       = stx.pico.Either.EitherSum<Ti,Tii>;
 typedef Either<Ti,Tii>          = stx.pico.Either<Ti,Tii>;
-typedef EitherLift              = stx.pico.Either.EitherLift;
+//typedef EitherUsing             = stx.pico.Either.EitherUsing;
 
 typedef OutcomeSum<T,E>         = stx.pico.Outcome.OutcomeSum<T,E>;
 typedef Outcome<T,E>            = stx.pico.Outcome<T,E>;
 
-typedef ArrayLift               = stx.lift.ArrayLift;
+typedef Clazz                   = stx.pico.Clazz;
+typedef Identifier              = stx.pico.Identifier;
+
+typedef OptionUsing             = stx.pico.Option.OptionLift;
+typedef ArrayUsing              = stx.lift.ArrayLift;
+

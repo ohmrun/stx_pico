@@ -24,7 +24,7 @@ abstract Outcome<T,E>(OutcomeSum<T,E>) from OutcomeSum<T,E> to OutcomeSum<T,E>{
   private function get_self():Outcome<T,E> return lift(this);
 }
 class OutcomeLift{
-  static public function map<T,E,TT>(self:OutcomeSum<T,E>,fn:T->TT):Outcome<TT,E>{
+  static inline public function map<T,E,TT>(self:OutcomeSum<T,E>,fn:T->TT):Outcome<TT,E>{
     return flat_map(self,(x) -> Success(fn(x)));
   }
   static public function flat_map<T,E,TT>(self:OutcomeSum<T,E>,fn:T->OutcomeSum<TT,E>):Outcome<TT,E>{
