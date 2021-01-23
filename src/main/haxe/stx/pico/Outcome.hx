@@ -45,4 +45,18 @@ class OutcomeLift{
       (e) -> Success(e)
     );
   }
+  static public function value<T,E>(self:OutcomeSum<T,E>):Option<T>{
+    return fold(
+      self,
+      Option.pure,
+      (_) -> Option.unit()
+    );
+  }
+  static public function error<T,E>(self:OutcomeSum<T,E>):Option<E>{
+    return fold(
+      self,
+      _ -> Option.unit(),
+      (e) -> Option.pure(e)
+    );
+  }
 }
