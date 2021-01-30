@@ -1,6 +1,6 @@
 package stx.pico;
 
-class IFaze{
+interface IFaze{
   public function definition():Class<Dynamic>;
   public function identifier():Identifier;
 }
