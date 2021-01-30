@@ -20,6 +20,7 @@ typedef OutcomeSum<T,E>         = stx.pico.Outcome.OutcomeSum<T,E>;
 typedef Outcome<T,E>            = stx.pico.Outcome<T,E>;
 
 typedef Clazz                   = stx.pico.Clazz;
+typedef IFaze                   = stx.pico.IFaze;
 typedef Identifier              = stx.pico.Identifier;
 
 typedef OptionUsing             = stx.pico.Option.OptionLift;
