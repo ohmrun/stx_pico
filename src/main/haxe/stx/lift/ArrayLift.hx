@@ -2,6 +2,7 @@ package stx.lift;
 
 import haxe.Constraints.IMap;
 
+using stx.Pico;
 
 class ArrayLift{
   /**
