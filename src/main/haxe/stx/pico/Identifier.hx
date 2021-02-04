@@ -1,6 +1,9 @@
 package stx.pico;
 
 abstract Identifier(String) to String{
+  @:noUsing static public function lift(self:String){
+    return new Identifier(self);
+  }
   public function new(self) this = self;
 
   public var name(get,never):String;
@@ -17,6 +20,13 @@ abstract Identifier(String) to String{
     return {
       name : n,
       pack : p
+    }
+  }
+  @:from static public function fromIdentDef(self:IdentDef){
+    return switch(self){
+      case { name : n, pack : null }   : lift(n);
+      case { name : n, pack : []   }   : lift(n);
+      case { name : n, pack : p    }   : lift(p.snoc(n).join("."));    
     }
   }
 }
