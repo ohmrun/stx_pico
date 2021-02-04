@@ -1,5 +1,7 @@
 package stx.pico;
 
+
+@:using(stx.pico.Either.EitherLift)
 typedef EitherSum<Ti,Tii>       = haxe.ds.Either<Ti,Tii>;
 
 @:using(stx.pico.Either.EitherLift)

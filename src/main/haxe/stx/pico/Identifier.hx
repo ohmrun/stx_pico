@@ -1,5 +1,7 @@
 package stx.pico;
 
+import stx.nano.IdentDef;
+
 abstract Identifier(String) to String{
   public function new(self) this = self;
 
@@ -10,5 +12,13 @@ abstract Identifier(String) to String{
   public var pack(get,never):Array<String>;
   private function get_pack():Array<String>{
     return this.split(".").rdropn(1);
+  }
+  public function toIdentDef():IdentDef{
+    var n = name;
+    var p = pack;
+    return {
+      name : n,
+      pack : p
+    }
   }
 }
