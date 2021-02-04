@@ -1,4 +1,4 @@
-package stx.nano;
+package stx.pico;
 
 typedef IdentDef = {
   public var name   : String;

@@ -1,7 +1,5 @@
 package stx.pico;
 
-import stx.nano.IdentDef;
-
 abstract Identifier(String) to String{
   public function new(self) this = self;
 

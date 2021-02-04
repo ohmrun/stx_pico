@@ -26,3 +26,4 @@ typedef Identifier              = stx.pico.Identifier;
 typedef OptionUsing             = stx.pico.Option.OptionLift;
 typedef ArrayUsing              = stx.lift.ArrayLift;
 
+typedef IdentDef                = stx.pico.IdentDef;
