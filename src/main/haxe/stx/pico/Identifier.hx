@@ -29,4 +29,7 @@ abstract Identifier(String) to String{
       case { name : n, pack : p    }   : lift(p.snoc(n).join("."));    
     }
   }
+  public function toString(){
+    return this;
+  }
 }
