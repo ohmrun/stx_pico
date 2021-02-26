@@ -55,8 +55,11 @@ class OptionLift{
 	 * Produces the `Option` result of `f` which takes the contents of `self` as a parameter
 	**/
   static public function flat_map<T, TT>(self: OptionSum<T>,f: T -> Option<TT>): Option<TT> {
-    var out = map(self,f);
-    return Option.flatten(out);
+    return switch(self){
+      case Some(v)    : f(v);
+      case None       : None;
+      case null       : None;  
+    }
   }
   /**
 	 * Produces `self` if it is `Some(x)`, the result of `thunk` otherwise.
