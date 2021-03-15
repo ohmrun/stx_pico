@@ -132,10 +132,10 @@ class OptionLift{
       case Some(v): [v];
     }
   }
-  static public function fudge<T>(self:Option<T>):T{
+  static public function fudge<T>(self:Option<T>,?err:Dynamic):T{
     return fold(self,
       (x) -> x,
-      ()  -> throw 'empty Option'  
+      ()  -> if(err!=null) throw err else throw 'empty Option'  
     );
   }
   static public function toString<T>(self:Option<T>){
