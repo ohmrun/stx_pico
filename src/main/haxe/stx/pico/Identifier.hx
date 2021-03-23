@@ -32,4 +32,9 @@ abstract Identifier(String) to String{
   public function toString(){
     return this;
   }
+  public function toArray(){
+    var p = pack.copy();
+        p.push(name);
+    return p;
+  }
 }
