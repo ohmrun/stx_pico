@@ -55,8 +55,11 @@ class OptionLift{
 	 * Produces the `Option` result of `f` which takes the contents of `self` as a parameter
 	**/
   static public function flat_map<T, TT>(self: OptionSum<T>,f: T -> Option<TT>): Option<TT> {
-    var out = map(self,f);
-    return Option.flatten(out);
+    return switch(self){
+      case Some(v)    : f(v);
+      case None       : None;
+      case null       : None;  
+    }
   }
   /**
 	 * Produces `self` if it is `Some(x)`, the result of `thunk` otherwise.
@@ -129,10 +132,10 @@ class OptionLift{
       case Some(v): [v];
     }
   }
-  static public function fudge<T>(self:Option<T>):T{
+  static public function fudge<T>(self:Option<T>,?err:Dynamic):T{
     return fold(self,
       (x) -> x,
-      ()  -> throw 'empty Option'  
+      ()  -> if(err!=null) throw err else throw 'empty Option'  
     );
   }
   static public function toString<T>(self:Option<T>){
