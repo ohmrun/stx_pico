@@ -8,5 +8,5 @@ class Clazz{
   }
   public final inline function identifier():Identifier{
     return new Identifier(Type.getClassName(definition()));
-  }
+  } 
 }

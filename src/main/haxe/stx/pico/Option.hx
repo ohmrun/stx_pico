@@ -67,6 +67,13 @@ class OptionLift{
   static public function or<T>(self: OptionSum<T>, thunk: Void -> OptionSum<T>): Option<T> {
     return fold(self,Some,thunk);
   }
+  static public function either<Ti,Tii>(self:OptionSum<Ti>,fn:Void->Tii):Either<Ti,Tii>{
+    return fold(
+      self,
+      x -> Left(x),
+      () -> Right(fn())
+    );
+  }
   /**
    * returns `None` if filter returns `false`, `Some(t:T)` otherwise.
   **/
