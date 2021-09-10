@@ -4,6 +4,10 @@
     "hashlink" : {
       "-main" : "Main",
       "-hl"   : "build/test/hl/main.hl" 
+    },
+    "javascript:test" : {
+      "-main" : "Main",
+      "-js"   : "build/test/js/main.js"
     }
   },
   "run" : {

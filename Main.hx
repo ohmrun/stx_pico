@@ -4,7 +4,8 @@ import stx.pico.Test;
 
 class Main {
 	static function main() {
-		trace("pico");
+		#if test
 		stx.pico.Test.main();
+		#end
 	}
 }

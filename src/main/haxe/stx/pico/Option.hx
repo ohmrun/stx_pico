@@ -3,6 +3,7 @@ package stx.pico;
 @:using(stx.pico.Option.OptionLift)
 typedef OptionSum<T> = haxe.ds.Option<T>;
 
+@:expose
 @:using(stx.pico.Option.OptionLift)
 abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
   static public var _(default,never) = OptionLift;
@@ -11,16 +12,16 @@ abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
   @:noUsing @:from static public function fromNullT<T>(v:Null<T>):Option<T> return Option.make(v);
 
   @:noUsing static public function unit<T>():Option<T>{
-    return None;
+    return new Option(None);
   }
   @:noUsing static public function pure<T>(t:T):Option<T>{
-    return Some(t);
+    return new Option(Some(t));
   }
   /**
 	 * Produces Option.Some(t) if `t` is not null, Option.None otherwise.
 	**/
   @:noUsing static public function make<T>(t: T): Option<T> {
-    return if (t == null) None; else Some(t);
+    return if (t == null) unit(); else pure(t);
   }
   /**
 	 * Produces an Option where `self` may contain another Option.
@@ -34,6 +35,15 @@ abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
   public function toString(){
     return _.toString(this);
   }
+
+  public function map<TT>(f: T -> TT):Option<TT>{
+    return _.map(this,f);
+  }
+  #if js
+  private function __init__(){
+    trace(js);
+  }
+  #end
 }
 class OptionLift{
   /**

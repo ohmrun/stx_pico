@@ -13,7 +13,7 @@
 * 	 445f501 2021-02-04  little bits
 * 	 7fe9e68 2021-01-31  import.hx causing problems
 * 	 33e1879 2021-01-30  typo
-* 	 1f7495f 2021-01-30  typo
+* 	 1f7495f 2021-01-30  typoAr
 * 	 ba57fa2 2021-01-30  IFaze
 * 	 ce57dac 2021-01-23  see commit log
 * 	 73e57de 2020-11-27  Inlining, added stx.pico.Identifier
