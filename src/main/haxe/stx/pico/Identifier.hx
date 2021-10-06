@@ -14,6 +14,7 @@ abstract Identifier(String) to String{
   private function get_pack():Array<String>{
     return this.split(".").rdropn(1);
   }
+  #if stx_nano
   public function toIdentDef():IdentDef{
     var n = name;
     var p = pack;
@@ -29,6 +30,7 @@ abstract Identifier(String) to String{
       case { name : n, pack : p    }   : lift(p.snoc(n).join("."));    
     }
   }
+  #end
   public function toString(){
     return this;
   }

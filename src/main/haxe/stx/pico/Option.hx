@@ -1,5 +1,6 @@
 package stx.pico;
 
+
 @:using(stx.pico.Option.OptionLift)
 typedef OptionSum<T> = haxe.ds.Option<T>;
 
@@ -8,7 +9,9 @@ typedef OptionSum<T> = haxe.ds.Option<T>;
 abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
   static public var _(default,never) = OptionLift;
 
-  public function new(self) this = self;
+  public function new(self) {
+    this = self;
+  }
   @:noUsing @:from static public function fromNullT<T>(v:Null<T>):Option<T> return Option.make(v);
 
   @:noUsing static public function unit<T>():Option<T>{
@@ -35,16 +38,8 @@ abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
   public function toString(){
     return _.toString(this);
   }
-
-  public function map<TT>(f: T -> TT):Option<TT>{
-    return _.map(this,f);
-  }
-  #if js
-  private function __init__(){
-    trace(js);
-  }
-  #end
 }
+@:expose
 class OptionLift{
   /**
    * Supply handlers for the cases and retrieve one ore other values.

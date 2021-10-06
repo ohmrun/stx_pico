@@ -1,5 +1,8 @@
 package stx;
 
+class Pico{
+  
+}
 typedef StdArray<T>             = std.Array<T>;
 typedef StdString               = std.String;
 typedef StdInt                  = Int;
@@ -25,5 +28,3 @@ typedef Identifier              = stx.pico.Identifier;
 
 typedef OptionUsing             = stx.pico.Option.OptionLift;
 typedef ArrayUsing              = stx.lift.ArrayLift;
-
-typedef IdentDef                = stx.pico.IdentDef;
