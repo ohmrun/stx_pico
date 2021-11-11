@@ -1,0 +1,8 @@
+{
+  "name": "stx_pico",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "0b1kn00b <polysemantic@gmail.com>",
+  "license": "MIT",
+  "private": true
+}

@@ -1,0 +1,2 @@
+#--resource src/main/haxe/stx/pico/js/option.js@option
+#--macro stx.pico.Plugin.use()
