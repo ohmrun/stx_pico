@@ -3,6 +3,15 @@ package stx;
 class Pico{
   
 }
+//@back2dos haxetink
+@:pure typedef PosDef = 
+  #if macro
+    haxe.macro.Expr.Position;
+  #else
+    haxe.PosInfos;
+  #end
+typedef Pos                     = PosDef;
+
 typedef StdArray<T>             = std.Array<T>;
 typedef StdString               = std.String;
 typedef StdInt                  = Int;
@@ -27,4 +36,9 @@ typedef IFaze                   = stx.pico.IFaze;
 typedef Identifier              = stx.pico.Identifier;
 
 typedef OptionUsing             = stx.pico.Option.OptionLift;
+
+typedef Error<E>                = stx.pico.Error<E>;
+typedef ErrorDef<E>             = stx.pico.Error.ErrorDef<E>;
+typedef ErrorApi<E>             = stx.pico.Error.ErrorApi<E>;
+
 typedef ArrayUsing              = stx.lift.ArrayLift;
