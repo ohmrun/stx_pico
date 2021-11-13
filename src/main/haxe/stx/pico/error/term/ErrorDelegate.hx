@@ -15,7 +15,10 @@ class ErrorDelegate<E> extends ErrorBase<E>{
   public function get_lst() : Option<Error<E>>{
     return delegate.lst;
   }
-  public function cons(that:Error<E>){
-    return delegate.cons(that);
+  public function concat(that:Error<E>){
+    return delegate.concat(that);
+  }
+  public function copy(){
+    return new ErrorDelegate(delegate.copy()).toError();
   }
 }

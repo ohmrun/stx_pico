@@ -40,5 +40,6 @@ typedef OptionUsing             = stx.pico.Option.OptionLift;
 typedef Error<E>                = stx.pico.Error<E>;
 typedef ErrorDef<E>             = stx.pico.Error.ErrorDef<E>;
 typedef ErrorApi<E>             = stx.pico.Error.ErrorApi<E>;
+typedef ErrorCls<E>             = stx.pico.Error.ErrorCls<E>;
 
 typedef ArrayUsing              = stx.lift.ArrayLift;

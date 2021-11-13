@@ -18,7 +18,10 @@ class ErrorMap<E,EE> extends ErrorBase<EE>{
   public function get_lst() : Option<Error<EE>>{
     return delegate.lst.map(x -> x.map(map));
   }
-  public function cons(that:Error<EE>){
-    return new ErrorConcat(this,that).toError();
+  public function copy(){
+     return new ErrorMap(delegate.copy(),map).toError();
+  }
+  public function concat(that:Error<EE>){
+    return new ErrorConcat(this.toError(),that).toError();
   }
 }
