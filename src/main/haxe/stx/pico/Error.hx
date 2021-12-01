@@ -14,6 +14,8 @@ typedef ErrorDef<E> = {
 
   public function concat(e:Error<E>):Error<E>;
   public function copy():Error<E>;
+  
+  public function toString():String;
 }
 interface ErrorApi<E>{
   public var pos(get,null) : Option<Pos>;
@@ -29,6 +31,8 @@ interface ErrorApi<E>{
 
   public function concat(e:Error<E>):Error<E>;
   public function copy():Error<E>;
+
+  public function toString():String;
 }
 class ErrorCls<E> implements ErrorApi<E>{
   public function new(val:Option<E>,lst:Option<Error<E>>,pos:Option<Pos>){
@@ -71,13 +75,18 @@ class ErrorCls<E> implements ErrorApi<E>{
       }
     ).fudge();
   }
+  public function toString():String{
+    return 'Error($val)';
+  }
 }
 @:using(stx.pico.Error.ErrorLift)
 @:forward abstract Error<E>(ErrorDef<E>) from ErrorDef<E> to ErrorDef<E>{
   static public var _(default,never) = ErrorLift;
   public function new(self) this = self;
   static public function lift<E>(self:ErrorDef<E>):Error<E> return new Error(self);
-
+  static public function make<E>(data:Option<E>,lst:Option<Error<E>>,?pos:Pos){
+    return lift(new ErrorCls(data,lst,Some(pos)));
+  }
   public function prj():ErrorDef<E> return this;
   private var self(get,never):Error<E>;
   private function get_self():Error<E> return lift(this);
@@ -106,7 +115,11 @@ class ErrorLift{
   static public function content<E>(self:Error<E>):Array<E>{
     return self.val.map(x -> self.rest().map_filter(err -> err.val).snoc(x)).def(() -> self.rest().map_filter((x) -> x.val));
   }
-
+  #if tink_core
+  static public function toTinkError<E>(self:Error<E>,code=500):tink.core.Error{
+    return tink.core.Error.withData(code, 'TINK_ERROR', self.val, self.pos.defv(null));
+  }
+  #end
   static public function map<E,EE>(self:Error<E>,fn:E->EE):Error<EE>{
     return new stx.pico.error.term.ErrorMap(self,fn).toError();
   }

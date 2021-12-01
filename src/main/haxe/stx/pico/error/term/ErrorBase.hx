@@ -18,4 +18,7 @@ abstract class ErrorBase<E> implements ErrorApi<E>{
   public function toError():Error<E>{
     return Error.lift(this);
   }
+  public function toString():String{
+    return 'Error($val)';
+  }
 } 
