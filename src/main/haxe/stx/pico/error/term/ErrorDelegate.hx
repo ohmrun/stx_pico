@@ -1,6 +1,6 @@
 package stx.pico.error.term;
 
-class ErrorDelegate<E> extends ErrorBase<E>{
+class ErrorDelegate<E> extends Error<E>{
   final delegate : Error<E>;
   public function new(delegate){
     super();

@@ -1,6 +1,6 @@
 package stx.pico.error.term;
 
-class ErrorMap<E,EE> extends ErrorBase<EE>{
+class ErrorMap<E,EE> extends Error<EE>{
   final delegate : Error<E>;
   public function new(delegate:Error<E>,map:E->EE){
     super();
@@ -16,7 +16,7 @@ class ErrorMap<E,EE> extends ErrorBase<EE>{
     return delegate.val.map(map);
   }
   public function get_lst() : Option<Error<EE>>{
-    return delegate.lst.map(x -> x.map(map));
+    return delegate.lst.map(x -> x.errate(map));
   }
   public function copy(){
      return new ErrorMap(delegate.copy(),map).toError();
