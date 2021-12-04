@@ -1,6 +1,6 @@
 package stx.pico;
 
-typedef ErrorDef<E> = {
+typedef ErrorDef<E> = ExceptionDef & {
   public var pos(get,null) : Option<Pos>;
   public function get_pos(): Option<Pos>;
 
@@ -17,7 +17,7 @@ typedef ErrorDef<E> = {
   
   public function toString():String;
 }
-interface ErrorApi<E>{
+interface ErrorApi<E> extends ExceptionApi{
   public var pos(get,null) : Option<Pos>;
   public function get_pos(): Option<Pos>;
 
@@ -34,11 +34,13 @@ interface ErrorApi<E>{
 
   public function toString():String;
 }
-abstract class Error<E> implements ErrorApi<E>{
+abstract class Error<E> implements ErrorApi<E> extends Exception{
   static public function make<E>(data:Option<E>,lst:Option<Error<E>>,?pos:Pos){
     return new stx.pico.error.term.ErrorBase(data,lst,Some(pos));
   }
-  public function new(){}
+  public function new(?previous:Exception, ?native:Any){
+    super('STX_ERROR',previous,native);
+  }
   public var pos(get,null) : Option<Pos>;
   abstract public function get_pos(): Option<Pos>;
 
@@ -76,7 +78,7 @@ abstract class Error<E> implements ErrorApi<E>{
   public function toError():Error<E>{
     return this;
   }
-  public function toString():String{
+  override public function toString():String{
     return 'Error($val)';
   }
 } 

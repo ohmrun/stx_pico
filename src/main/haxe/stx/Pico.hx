@@ -1,5 +1,8 @@
 package stx;
 
+import haxe.CallStack;
+import haxe.Exception;
+
 class Pico{
   
 }
@@ -42,3 +45,18 @@ typedef ErrorDef<E>             = stx.pico.Error.ErrorDef<E>;
 typedef ErrorApi<E>             = stx.pico.Error.ErrorApi<E>;
 
 typedef ArrayUsing              = stx.lift.ArrayLift;
+
+typedef ExceptionDef            = {
+  public var message(get,never):String;
+	public var stack(get,never):CallStack;
+	//public var previous(get,never):Null<Exception>;
+	public var native(get,never):Any;
+  function details():String;
+}
+interface ExceptionApi {
+  public var message(get,never):String;
+	public var stack(get,never):CallStack;
+	//public var previous(get,never):Null<Exception>;
+	public var native(get,never):Any;
+  function details():String;
+}
