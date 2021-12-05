@@ -79,6 +79,6 @@ abstract class Error<E> implements ErrorApi<E> extends Exception{
     return this;
   }
   override public function toString():String{
-    return 'Error($val)';
+    return 'Error($val) at $pos\n${stack}';
   }
 } 
