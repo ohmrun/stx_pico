@@ -1,6 +1,6 @@
 package stx.pico;
 
-typedef ErrorDef<E> = ExceptionDef & {
+typedef ErrorDef<E> = Iterable<E> & ExceptionDef & {
   public var pos(get,null) : Option<Pos>;
   public function get_pos(): Option<Pos>;
 
@@ -16,6 +16,7 @@ typedef ErrorDef<E> = ExceptionDef & {
   public function copy():Error<E>;
   
   public function toString():String;
+  public function toIterable():Iterable<Null<E>>;
 }
 interface ErrorApi<E> extends ExceptionApi{
   public var pos(get,null) : Option<Pos>;
@@ -33,14 +34,31 @@ interface ErrorApi<E> extends ExceptionApi{
   public function copy():Error<E>;
 
   public function toString():String;
+  public function toIterable():Iterable<Null<E>>;
 }
 abstract class Error<E> implements ErrorApi<E> extends Exception{
-  static public function make<E>(data:Option<E>,lst:Option<Error<E>>,?pos:Pos){
-    return new stx.pico.error.term.ErrorBase(data,lst,Some(pos));
+  @:noUsing static public function make<E>(data:Option<E>,lst:Option<Error<E>>,?pos:Pos):Error<E>{
+    return new ErrorBase(data,lst,Some(pos)).toError();
+  }
+  @:noUsing static public function iter<E>(data:Iterable<E>,?pos:Pos):Error<E>{
+    var all = Lambda.array(data);
+        all.reverse();
+    
+    function rec(arr:Array<E>):Error<E>{
+      var head = arr.head();
+      var tail = arr.tail();
+      return switch([head,tail.is_defined()]){
+        case [Some(h),true]   : Error.make(Some(h),Some(rec(tail)),pos);
+        case [Some(h),false]  : Error.make(Some(h),None,pos);
+        case [None,_]         : Error.make(None,None,pos);
+      }
+    }
+    return rec(all);
   }
   public function new(?previous:Exception, ?native:Any){
     super('STX_ERROR',previous,native);
   }
+  
   public var pos(get,null) : Option<Pos>;
   abstract public function get_pos(): Option<Pos>;
 
@@ -50,31 +68,14 @@ abstract class Error<E> implements ErrorApi<E> extends Exception{
   public var lst(get,null) : Option<Error<E>>;
   abstract public function get_lst() : Option<Error<E>>;
 
-
   abstract public function concat(e:Error<E>):Error<E>;
   abstract public function copy():Error<E>;
-  //abstract public function content():Array<E>;
-  public function rest():Array<Error<E>>{
-    var arr   = [];
-    var self  = this;
-    while(true){
-      switch(self.lst){
-        case Some(ok) : 
-          arr.unshift(ok);
-          arr  = arr.concat(ok.rest());
-          self = ok;
-        case None : break;
-      }
-    }
-    return arr;
-  }
-  public function content():Array<E>{
-    return this.val.map(x -> this.rest().map_filter(err -> err.val).snoc(x)).def(() -> this.rest().map_filter((x) -> x.val));
-  }
+  abstract public function iterator():Iterator<Null<E>>;
+  abstract public function toIterable():Iterable<Null<E>>;
+  
   public function errate<EE>(fn:E->EE):Error<EE>{
-    return new stx.pico.error.term.ErrorMap(this,fn).toError();
+    return new ErrorBase(this.val.map(fn),this.lst.map(x -> x.errate(fn)),this.pos).toError();
   }
-
   public function toError():Error<E>{
     return this;
   }
@@ -82,3 +83,47 @@ abstract class Error<E> implements ErrorApi<E> extends Exception{
     return 'Error($val) at $pos\n${stack}';
   }
 } 
+class ErrorBase<E> extends Error<E>{
+  public function new(val:Option<E>,lst:Option<Error<E>>,pos:Option<Pos>){
+    super();
+    this.val = val;
+    this.lst = lst;
+    this.pos = pos;
+  }
+  public function get_pos(){
+    return pos;
+  }
+  public function get_lst(){
+    return lst;
+  }
+  public function get_val(){
+    return val;
+  }
+  public function copy():Error<E>{
+    return null;
+  }
+  public function concat(that:Error<E>):Error<E>{
+    return null;
+  }
+  public function iterator():Iterator<Null<E>>{
+    var self : Error<E> = this;
+    return {
+      hasNext : () -> self != null,
+      next    : () -> {
+        final val   = self.val.defv(null);
+        self        = self.lst.defv(null);
+        return val;
+      }
+    }
+  }
+  public function toIterable():Iterable<Null<E>>{
+    return {
+      iterator : this.iterator
+    }
+  }
+  #if tink_core
+  public function toTinkError(code=500):tink.core.Error{
+    return tink.core.Error.withData(code, 'TINK_ERROR', this.val, this.pos.defv(null));
+  }
+  #end
+}
