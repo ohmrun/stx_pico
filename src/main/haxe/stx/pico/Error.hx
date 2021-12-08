@@ -38,24 +38,41 @@ interface ErrorApi<E> extends ExceptionApi{
 }
 abstract class Error<E> implements ErrorApi<E> extends Exception{
   @:noUsing static public function make<E>(data:Option<E>,lst:Option<Error<E>>,?pos:Pos):Error<E>{
-    return new ErrorBase(data,lst,Some(pos)).toError();
+    if(data == null){ data = None; }
+    if(lst == null){ lst = None; }
+    return new ErrorBase(data,lst,pos == null ? None : Some(pos)).toError();
   }
-  @:noUsing static public function iter<E>(data:Iterable<E>,?pos:Pos):Error<E>{
-    var all = Lambda.array(data);
-        all.reverse();
+  // @:noUsing static public function iter<E>(data:Iterable<E>,?pos:Pos):Error<E>{
+  //   var all = Lambda.array(data);
+  //       all.reverse();
     
-    function rec(arr:Array<E>):Error<E>{
-      var head = arr.head();
-      var tail = arr.tail();
-      return switch([head,tail.is_defined()]){
-        case [Some(h),true]   : Error.make(Some(h),Some(rec(tail)),pos);
-        case [Some(h),false]  : Error.make(Some(h),None,pos);
-        case [None,_]         : Error.make(None,None,pos);
+  //   function rec(arr:Array<E>):Error<E>{
+  //     var head = arr.head();
+  //     var tail = arr.tail();
+  //     trace(head);
+  //     trace(tail);
+  //     return switch([head,tail.is_defined()]){
+  //       case [Some(h),true]   : Error.make(Some(h),Some(rec(tail)),pos);
+  //       case [Some(h),false]  : Error.make(Some(h),None,pos);
+  //       case [None,_]         : Error.make(None,None,pos);
+  //     }
+  //   }
+  //   var result = rec(all);
+  //   return result;
+  // }
+  static public function iterable<E>(self:Error<E>):Iterable<Error<E>>{
+    return {
+      iterator : () -> {
+        hasNext : () -> self != null,
+        next    : () -> {
+          final val   = self;
+          self        = self.lst.defv(null);
+          return val;
+        }
       }
-    }
-    return rec(all);
+    };
   }
-  public function new(?previous:Exception, ?native:Any){
+  private function new(?previous:Exception, ?native:Any){
     super('STX_ERROR',previous,native);
   }
   
@@ -74,7 +91,11 @@ abstract class Error<E> implements ErrorApi<E> extends Exception{
   abstract public function toIterable():Iterable<Null<E>>;
   
   public function errate<EE>(fn:E->EE):Error<EE>{
-    return new ErrorBase(this.val.map(fn),this.lst.map(x -> x.errate(fn)),this.pos).toError();
+    return Error.make(
+      this.val.map(fn),
+      this.lst.map(x -> x.errate(fn)),
+      this.pos.defv(null)
+    ).toError();
   }
   public function toError():Error<E>{
     return this;
@@ -99,11 +120,26 @@ class ErrorBase<E> extends Error<E>{
   public function get_val(){
     return val;
   }
+  private static function rebuild<E>(arr:Array<Error<E>>):Error<E>{
+    var head = arr.head();
+    var tail = arr.tail();
+    return switch([head,tail.is_defined()]){
+      case [Some(h),true]   : Error.make(h.val,rebuild(tail),h.pos.defv(null));
+      case [Some(h),false]  : Error.make(h.val,None,h.pos.defv(null));
+      case [None,_]         : Error.make(None,None,null);
+    }
+  }
   public function copy():Error<E>{
-    return null;
+    var nxt = Lambda.array(Error.iterable(this));
+        nxt.reverse();
+    return rebuild(nxt);
   }
   public function concat(that:Error<E>):Error<E>{
-    return null;
+    var lhs = Error.iterable(this);
+    var rhs = Error.iterable(this);
+    var nxt = Lambda.array(lhs.concat(rhs));
+        nxt.reverse();
+    return rebuild(nxt);
   }
   public function iterator():Iterator<Null<E>>{
     var self : Error<E> = this;

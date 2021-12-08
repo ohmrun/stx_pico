@@ -44,7 +44,10 @@ typedef Error<E>                = stx.pico.Error<E>;
 typedef ErrorDef<E>             = stx.pico.Error.ErrorDef<E>;
 typedef ErrorApi<E>             = stx.pico.Error.ErrorApi<E>;
 
-typedef ArrayUsing              = stx.lift.ArrayLift;
+typedef ArrayLift               = stx.lift.ArrayLift;
+typedef ErrorLift               = stx.lift.ErrorLift;
+typedef IteratorLift            = stx.lift.IteratorLift;
+typedef IterableLift            = stx.lift.IterableLift;
 
 typedef ExceptionDef            = {
   public var message(get,never):String;

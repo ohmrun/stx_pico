@@ -28,7 +28,7 @@ class OutcomeLift{
     return flat_map(self,(x) -> Success(fn(x)));
   }
   static public function flat_map<T,E,TT>(self:OutcomeSum<T,E>,fn:T->OutcomeSum<TT,E>):Outcome<TT,E>{
-    return Outcome.lift(fold(self,(t) -> fn(t),(e) -> Failure(e)));
+     return Outcome.lift(fold(self,(t) -> fn(t),(e) -> Failure(e)));
   }
   inline static public function fold<T,E,TT>(self:OutcomeSum<T,E>,fn:T->TT,er:E->TT):TT{
     return switch(self){
