@@ -1,7 +1,17 @@
 {
+  "version" : "1",
   "build" : {
     "-lib" : ["stx_pico","stx_log"],
     "-cp" : ["src/main/haxe"],
+    "unit" : {
+      "--macro" : [
+        "include('stx.Pico',true)",
+        "include('stx.pico',true,['stx.pico.Plugin'])"
+      ],
+      "interp"  : {
+        "--interp" : true
+      }
+    },
     "test" : {
       "-lib" : ["stx_test","stx_nano"],
       "-main" : "stx.pico.Test",

@@ -29,8 +29,8 @@ class Plugin{
           case TAbstract(t,args) :
             function is_nominal_type(type:Type){
               return switch(type){
-                case TAbstract(_.get().name == t.get()  : true;
-                default                                 : false;
+                case TAbstract(_.get().name == t.get())   : true;
+                default                                   : false;
               }
             }
             //trace(args);

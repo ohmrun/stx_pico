@@ -37,7 +37,7 @@ interface ErrorApi<E> extends ExceptionApi{
   public function toIterable():Iterable<Null<E>>;
 }
 abstract class Error<E> implements ErrorApi<E> extends Exception{
-  @:noUsing static public function make<E>(data:Option<E>,lst:Option<Error<E>>,?pos:Pos):Error<E>{
+  @:noUsing static public inline function make<E>(data:Option<E>,?lst:Option<Error<E>>,?pos:Pos):Error<E>{
     if(data == null){ data = None; }
     if(lst == null){ lst = None; }
     return new ErrorBase(data,lst,pos == null ? None : Some(pos)).toError();

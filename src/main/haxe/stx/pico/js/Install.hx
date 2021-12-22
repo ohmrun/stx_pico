@@ -1,4 +1,4 @@
-package stx.pico.javascript;
+package stx.pico.js;
 
 class Install{
   static public function main(){
