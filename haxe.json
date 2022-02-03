@@ -1,7 +1,7 @@
 {
   "version" : "1",
   "build" : {
-    "-lib" : ["stx_pico","stx_log"],
+    "-lib" : [],
     "-cp" : ["src/main/haxe"],
     "unit" : {
       "--macro" : [
@@ -10,24 +10,27 @@
       ],
       "interp"  : {
         "--interp" : true
+      },
+      "cpp"  : {
+        "--cpp" : "build/unit/cpp"
       }
     },
     "test" : {
-      "-lib" : ["stx_test","stx_nano"],
+      "-lib" : ["stx_test","stx_nano","stx_log"],
       "-main" : "stx.pico.Test",
       "interp" : {
         "--interp" : true
+      },
+      "hashlink" : {
+        "-hl"   : "build/test/hl/main.hl" 
+      },
+      "js" : {
+        "-D"    : ["js-unflatten"],
+        "-js"   : "build/test/js/main.js"
       }
     },
     "main" : {
       "-main" : "Main",
-      "hashlink" : {
-        "-hl"   : "build/test/hl/main.hl" 
-      },
-      "javascript:test" : {
-        "-D"    : ["js-unflatten","stx.is_library"],
-        "-js"   : "build/test/js/main.js"
-      },
       "interp" : {
         "--interp" : true
       }
@@ -40,6 +43,9 @@
     }
   },
   "run" : {
-    "hashlink" : [["hl","build/test/hl/main.hl"]]
+    "hashlink"  : [["hl","build/test/hl/main.hl"]],
+    "test::js"  : [
+      ["hx","build","test/js"]
+    ]
   }
 }
