@@ -12,10 +12,29 @@
         "--interp" : true
       },
       "cpp"  : {
+        "--verbose" : true,
         "--cpp" : "build/unit/cpp"
       },
       "java"  : {
         "--java" : "build/unit/java"
+      },
+      "hl"  : {
+        "--hl" : "build/unit/hl/main.hl"
+      },
+      "php"  : {
+        "--php" : "build/unit/php"
+      },
+      "python"  : {
+        "--python" : "build/unit/python/main.py"
+      },
+      "lua"  : {
+        "--lua" : "build/unit/lua/main.lua"
+      },
+      "cs"  : {
+        "--cs" : "build/unit/cs"
+      },
+      "jvm"  : {
+        "--jvm" : "build/unit/jvm/main.jar"
       }
     },
     "test" : {
@@ -46,6 +65,16 @@
     }
   },
   "run" : {
+    "unit"      : [
+      ["hx", "build","unit/cpp"],
+      ["hx", "build","unit/java"],
+      ["hx", "build","unit/hl"],
+      ["hx", "build","unit/php"],
+      ["hx", "build","unit/python"],
+      ["hx", "build","unit/lua"],
+      ["hx", "build","unit/cs"],
+      ["hx", "build","unit/jvm"]
+    ],
     "hashlink"  : [["hl","build/test/hl/main.hl"]],
     "test::js"  : [
       ["hx","build","test/js"]
