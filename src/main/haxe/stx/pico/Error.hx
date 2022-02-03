@@ -1,6 +1,6 @@
 package stx.pico;
 
-typedef ErrorDef<E> = Iterable<E> & ExceptionDef & {
+typedef ErrorDef<E> = Iterable<E> & {
   public var pos(get,null) : Option<Pos>;
   public function get_pos(): Option<Pos>;
 
@@ -17,8 +17,10 @@ typedef ErrorDef<E> = Iterable<E> & ExceptionDef & {
   
   public function toString():String;
   public function toIterable():Iterable<Null<E>>;
+
+  public function raise():Void;
 }
-interface ErrorApi<E> extends ExceptionApi{
+interface ErrorApi<E>{
   public var pos(get,null) : Option<Pos>;
   public function get_pos(): Option<Pos>;
 
@@ -28,6 +30,9 @@ interface ErrorApi<E> extends ExceptionApi{
   public var lst(get,null) : Option<Error<E>>;
   public function get_lst() : Option<Error<E>>;
 
+  public var exception(get,null) : Exception;
+  public function get_exception() : Exception;
+  
   public function toError():Error<E>;
 
   public function concat(e:Error<E>):Error<E>;
@@ -35,31 +40,15 @@ interface ErrorApi<E> extends ExceptionApi{
 
   public function toString():String;
   public function toIterable():Iterable<Null<E>>;
+
+  public function raise():Void;
 }
-abstract class Error<E> implements ErrorApi<E> extends Exception{
+abstract class Error<E> implements ErrorApi<E>{
   @:noUsing static public inline function make<E>(data:Option<E>,?lst:Option<Error<E>>,?pos:Pos):Error<E>{
     if(data == null){ data = None; }
     if(lst == null){ lst = None; }
     return new ErrorBase(data,lst,pos == null ? None : Some(pos)).toError();
   }
-  // @:noUsing static public function iter<E>(data:Iterable<E>,?pos:Pos):Error<E>{
-  //   var all = Lambda.array(data);
-  //       all.reverse();
-    
-  //   function rec(arr:Array<E>):Error<E>{
-  //     var head = arr.head();
-  //     var tail = arr.tail();
-  //     trace(head);
-  //     trace(tail);
-  //     return switch([head,tail.is_defined()]){
-  //       case [Some(h),true]   : Error.make(Some(h),Some(rec(tail)),pos);
-  //       case [Some(h),false]  : Error.make(Some(h),None,pos);
-  //       case [None,_]         : Error.make(None,None,pos);
-  //     }
-  //   }
-  //   var result = rec(all);
-  //   return result;
-  // }
   static public function iterable<E>(self:Error<E>):Iterable<Error<E>>{
     return {
       iterator : () -> {
@@ -72,8 +61,8 @@ abstract class Error<E> implements ErrorApi<E> extends Exception{
       }
     };
   }
-  private function new(?previous:Exception, ?native:Any){
-    super('STX_ERROR',previous,native);
+  private function new(?exception:Exception){
+    this.exception = exception == null ? new Exception('STX_ERROR') : exception;
   }
   
   public var pos(get,null) : Option<Pos>;
@@ -100,8 +89,8 @@ abstract class Error<E> implements ErrorApi<E> extends Exception{
   public function toError():Error<E>{
     return this;
   }
-  override public function toString():String{
-    return 'Error($val) at $pos\n${stack}';
+  public function toString():String{
+    return 'Error($val) at $pos\n${exception.stack}';
   }
 } 
 class ErrorBase<E> extends Error<E>{
@@ -157,9 +146,15 @@ class ErrorBase<E> extends Error<E>{
       iterator : this.iterator
     }
   }
+  public function get_exception(){
+    return this.exception;
+  }
   #if tink_core
   public function toTinkError(code=500):tink.core.Error{
     return tink.core.Error.withData(code, 'TINK_ERROR', this.val, this.pos.defv(null));
   }
   #end
+  public function raise(){
+    throw exception;
+  }
 }

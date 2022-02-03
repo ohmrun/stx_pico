@@ -9,7 +9,7 @@ enum OutcomeSum<T,E>{
 @:using(stx.pico.Outcome.OutcomeLift)
 abstract Outcome<T,E>(OutcomeSum<T,E>) from OutcomeSum<T,E> to OutcomeSum<T,E>{
   public function new(self) this = self;
-  static public var _(default,never) = OutcomeLift;
+  static public var __(default,never) = OutcomeLift;
 
   static public function lift<T,E>(self:OutcomeSum<T,E>):Outcome<T,E> return new Outcome(self);
 
@@ -55,7 +55,7 @@ class OutcomeLift{
   static public function error<T,E>(self:OutcomeSum<T,E>):Option<E>{
     return fold(
       self,
-      _ -> Option.unit(),
+      x -> Option.unit(),
       (e) -> Option.pure(e)
     );
   }

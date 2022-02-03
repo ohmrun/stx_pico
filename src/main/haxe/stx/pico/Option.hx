@@ -7,7 +7,7 @@ typedef OptionSum<T> = haxe.ds.Option<T>;
 @:expose
 @:using(stx.pico.Option.OptionLift)
 abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
-  static public var _(default,never) = OptionLift;
+  static public var __(default,never) = OptionLift;
 
   public function new(self) {
     this = self;
@@ -36,7 +36,7 @@ abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
     }
   }
   public function toString(){
-    return _.toString(this);
+    return __.toString(this);
   }
 }
 @:expose
@@ -107,7 +107,7 @@ class OptionLift{
     returns `true` if self is `Some(v)`, `false` otherwise.
   **/
   static public function is_defined<T>(self:OptionSum<T>){
-    return fold(self,(_) -> true,() -> false);
+    return fold(self,(x) -> true,() -> false);
   }
   /**
    * returns an `Iterator`. makes `Option` avaliable for use in array comprehensions.
