@@ -1,6 +1,6 @@
 package stx.pico;
 
-typedef ErrorDef<E> = Iterable<E> & {
+typedef ErrorDef<E> = Iterable<E> & ExceptionDef & {
   public var pos(get,null) : Option<Pos>;
   public function get_pos(): Option<Pos>;
 
@@ -20,7 +20,7 @@ typedef ErrorDef<E> = Iterable<E> & {
 
   public function raise():Void;
 }
-interface ErrorApi<E>{
+interface ErrorApi<E> extends ExceptionApi{
   public var pos(get,null) : Option<Pos>;
   public function get_pos(): Option<Pos>;
 
@@ -92,6 +92,9 @@ abstract class Error<E> implements ErrorApi<E>{
   public function toString():String{
     return 'Error($val) at $pos\n${exception.stack}';
   }
+  public function get_stack():CallStack{
+    return this.exception.stack;
+  }
 } 
 class ErrorBase<E> extends Error<E>{
   public function new(val:Option<E>,lst:Option<Error<E>>,pos:Option<Pos>){
@@ -149,7 +152,10 @@ class ErrorBase<E> extends Error<E>{
   public function get_exception(){
     return this.exception;
   }
-  #if tink_core
+  public function details(){
+    return this.exception.details();
+  }
+   #if tink_core
   public function toTinkError(code=500):tink.core.Error{
     return tink.core.Error.withData(code, 'TINK_ERROR', this.val, this.pos.defv(null));
   }
