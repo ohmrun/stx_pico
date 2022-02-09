@@ -311,6 +311,9 @@ class ArrayLift{
 
     return r;
   }
+  static public function range<T>(self:StdArray<T>,l:Int,r:Int):Array<T>{
+    return self.slice(l,r);
+  }
   /**
 	 * Produces an `Array` from `self[0]` to `self[n]`
 	**/

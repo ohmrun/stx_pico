@@ -155,7 +155,7 @@ class ErrorBase<E> extends Error<E>{
   public function details(){
     return this.exception.details();
   }
-   #if tink_core
+  #if tink_core
   public function toTinkError(code=500):tink.core.Error{
     return tink.core.Error.withData(code, 'TINK_ERROR', this.val, this.pos.defv(null));
   }
