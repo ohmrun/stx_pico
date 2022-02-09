@@ -166,7 +166,7 @@ class ArrayLift{
    * Applies function `f` to each element in `self`, passing the index in the left hand parameter, 
    * returning an `Array`.
 	**/
-  static public function mapi<T,TT>(self:StdArray<T>,fn:Int->T->TT):Array<TT>{
+  static public function imap<T,TT>(self:StdArray<T>,fn:Int->T->TT):Array<TT>{
     var n: StdArray<TT> = [];
     var e           = null;
     for (i in 0...self.length){
@@ -311,7 +311,7 @@ class ArrayLift{
 
     return r;
   }
-  static public function range<T>(self:StdArray<T>,l:Int,r:Int):Array<T>{
+  static public function range<T>(self:StdArray<T>,l:Int,?r:Int):Array<T>{
     return self.slice(l,r);
   }
   /**
