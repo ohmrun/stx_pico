@@ -62,9 +62,11 @@ abstract class Error<E> implements ErrorApi<E>{
     };
   }
   private function new(?exception:Exception){
-    this.exception = exception == null ? new Exception('STX_ERROR') : exception;
+    this.exception = exception;
   }
-  
+  public function get_exception(){
+    return this.exception == null ? this.exception = new Exception('STX_ERROR') : this.exception;
+  }
   public var pos(get,null) : Option<Pos>;
   abstract public function get_pos(): Option<Pos>;
 
@@ -94,6 +96,12 @@ abstract class Error<E> implements ErrorApi<E>{
   }
   public function get_stack():CallStack{
     return this.exception.stack;
+  }
+  public function get_message(){
+    return this.exception.message;
+  }
+  public function get_native(){
+    return this.exception.native;
   }
 } 
 class ErrorBase<E> extends Error<E>{
@@ -148,9 +156,6 @@ class ErrorBase<E> extends Error<E>{
     return {
       iterator : this.iterator
     }
-  }
-  public function get_exception(){
-    return this.exception;
   }
   public function details(){
     return this.exception.details();
