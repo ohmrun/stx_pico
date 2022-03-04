@@ -6,6 +6,14 @@ import haxe.Exception;
 class Pico{
   
 }
+interface StxMemberApi{
+  public var stx_tag(get,null) : Int;
+  public function get_stx_tag() : Int;
+}
+abstract class StxMemberCls extends Clazz{
+  public var stx_tag(get,null) : Int;
+  abstract public function get_stx_tag() : Int;
+}
 //@back2dos haxetink
 @:pure typedef PosDef = 
   #if macro
@@ -43,6 +51,15 @@ typedef OptionUsing             = stx.pico.Option.OptionLift;
 typedef Error<E>                = stx.pico.Error<E>;
 typedef ErrorDef<E>             = stx.pico.Error.ErrorDef<E>;
 typedef ErrorApi<E>             = stx.pico.Error.ErrorApi<E>;
+
+typedef Apply<P,R>              = stx.pico.Apply<P,R>;
+typedef ApplyCls<P,R>           = stx.pico.Apply.ApplyCls<P,R>;
+typedef ApplyApi<P,R>           = stx.pico.Apply.ApplyApi<P,R>;
+
+typedef React                   = stx.pico.React;
+typedef ReactCls                = stx.pico.React.ReactCls;
+typedef ReactApi                = stx.pico.React.ReactApi;
+
 
 typedef ArrayLift               = stx.lift.ArrayLift;
 typedef ErrorLift               = stx.lift.ErrorLift;
