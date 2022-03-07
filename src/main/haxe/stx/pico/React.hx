@@ -3,7 +3,7 @@ package stx.pico;
 interface ReactApi{
   public function react():Void;
 }
-abstract class ReactCls{
+abstract class ReactCls implements ReactApi{
   abstract public function react():Void;
 }
 @:forward abstract React(ReactApi) from ReactApi to ReactApi{
