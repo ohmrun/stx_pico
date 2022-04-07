@@ -14,7 +14,10 @@ typedef ErrorDef<E> = Iterable<E> & ExceptionDef & {
 
   public function concat(e:Error<E>):Error<E>;
   public function copy():Error<E>;
-  
+
+  public var exception(get,null) : Exception;
+  public function get_exception() : Exception;
+
   public function toString():String;
   public function toIterable():Iterable<Null<E>>;
 
@@ -78,15 +81,29 @@ abstract class Error<E> implements ErrorApi<E>{
 
   abstract public function concat(e:Error<E>):Error<E>;
   abstract public function copy():Error<E>;
-  abstract public function iterator():Iterator<Null<E>>;
-  abstract public function toIterable():Iterable<Null<E>>;
   
+  public function iterator():Iterator<Null<E>>{
+    var self : Error<E> = this;
+    return {
+      hasNext : () -> self != null,
+      next    : () -> {
+        final val   = self.val.defv(null);
+        self        = self.lst.defv(null);
+        return val;
+      }
+    }
+  }  
   public function errate<EE>(fn:E->EE):Error<EE>{
     return Error.make(
       this.val.map(fn),
       this.lst.map(x -> x.errate(fn)),
       this.pos.defv(null)
     ).toError();
+  }
+  public function toIterable():Iterable<Null<E>>{
+    return {
+      iterator : this.iterator
+    }
   }
   public function toError():Error<E>{
     return this;
@@ -102,6 +119,9 @@ abstract class Error<E> implements ErrorApi<E>{
   }
   public function get_native(){
     return this.exception.native;
+  }
+  public function raise(){
+    throw exception;
   }
 } 
 class ErrorBase<E> extends Error<E>{
@@ -141,22 +161,6 @@ class ErrorBase<E> extends Error<E>{
         nxt.reverse();
     return rebuild(nxt);
   }
-  public function iterator():Iterator<Null<E>>{
-    var self : Error<E> = this;
-    return {
-      hasNext : () -> self != null,
-      next    : () -> {
-        final val   = self.val.defv(null);
-        self        = self.lst.defv(null);
-        return val;
-      }
-    }
-  }
-  public function toIterable():Iterable<Null<E>>{
-    return {
-      iterator : this.iterator
-    }
-  }
   public function details(){
     return this.exception.details();
   }
@@ -165,7 +169,36 @@ class ErrorBase<E> extends Error<E>{
     return tink.core.Error.withData(code, 'TINK_ERROR', this.val, this.pos.defv(null));
   }
   #end
-  public function raise(){
-    throw exception;
+}
+class ErrorException extends Error<String>{
+  static public function make(exception:haxe.Exception,lst:Option<Error<String>>,pos:Option<Pos>){
+    return new ErrorException(exception,lst,pos);
+  }
+  public function new(exception:haxe.Exception,lst:Option<Error<String>>,pos:Option<Pos>){
+    super(exception);
+    this.lst = lst;
+    this.pos = pos;
+  }
+  public function get_pos(): Option<Pos>{
+    return this.pos;
+  }
+  public function get_val() : Option<String>{
+    return this.exception.details(); 
+  }
+  public function get_lst() : Option<Error<String>>{
+    return lst;
+  }
+  public function concat(e:Error<String>):Error<String>{
+    final stack = this.lst.fold(
+      ok -> Some(ok.concat(e)),
+      () -> Some(e)
+    );
+    return new ErrorException(this.exception,stack,this.pos);
+  }
+  public function copy():Error<String>{
+    return make(this.exception,this.lst,this.pos);
+  }
+  public function details():String{
+    return this.exception.details();
   }
 }

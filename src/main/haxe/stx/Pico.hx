@@ -51,10 +51,16 @@ typedef OptionUsing             = stx.pico.Option.OptionLift;
 typedef Error<E>                = stx.pico.Error<E>;
 typedef ErrorDef<E>             = stx.pico.Error.ErrorDef<E>;
 typedef ErrorApi<E>             = stx.pico.Error.ErrorApi<E>;
+typedef ErrorBase<E>            = stx.pico.Error.ErrorBase<E>;
+typedef ErrorException          = stx.pico.Error.ErrorException;
 
 typedef Apply<P,R>              = stx.pico.Apply<P,R>;
 typedef ApplyCls<P,R>           = stx.pico.Apply.ApplyCls<P,R>;
 typedef ApplyApi<P,R>           = stx.pico.Apply.ApplyApi<P,R>;
+
+typedef Comply<Pi,Pii,R>              = stx.pico.Comply<Pi,Pii,R>;
+typedef ComplyCls<Pi,Pii,R>           = stx.pico.Comply.ComplyCls<Pi,Pii,R>;
+typedef ComplyApi<Pi,Pii,R>           = stx.pico.Comply.ComplyApi<Pi,Pii,R>;
 
 typedef React                   = stx.pico.React;
 typedef ReactCls                = stx.pico.React.ReactCls;
