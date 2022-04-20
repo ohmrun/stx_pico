@@ -11,7 +11,7 @@ abstract Outcome<T,E>(OutcomeSum<T,E>) from OutcomeSum<T,E> to OutcomeSum<T,E>{
   public function new(self) this = self;
   static public var __(default,never) = OutcomeLift;
 
-  static public function lift<T,E>(self:OutcomeSum<T,E>):Outcome<T,E> return new Outcome(self);
+  @:noUsing static public function lift<T,E>(self:OutcomeSum<T,E>):Outcome<T,E> return new Outcome(self);
 
   @:noUsing static public function success<T,E>(t:T):Outcome<T,E>{
     return lift(Success(t));

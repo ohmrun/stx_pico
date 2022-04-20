@@ -1,7 +1,7 @@
 package stx.lift;
 
 class IterableLift{
-  static public function make<T>(self:Void->Iterator<T>):Iterable<T>{
+  @:noUsing static public function make<T>(self:Void->Iterator<T>):Iterable<T>{
     return {
       iterator : self
     };

@@ -28,7 +28,7 @@ abstract class ApplyCls<P,R> implements ApplyApi<P,R>{
   }
 }
 class ApplyLift{
-  static public function lift<P,R>(self:ApplyApi<P,R>):Apply<P,R>{
+  @:noUsing static public function lift<P,R>(self:ApplyApi<P,R>):Apply<P,R>{
     return Apply.lift(self);
   }
   static public function map<P,R,Ri>(self:ApplyApi<P,R>,fn:R->Ri):Apply<P,Ri>{

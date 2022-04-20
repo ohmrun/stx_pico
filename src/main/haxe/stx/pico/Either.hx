@@ -9,7 +9,7 @@ typedef EitherSum<Ti,Tii>       = haxe.ds.Either<Ti,Tii>;
   static public var __ (default,never) = EitherLift;
   public function new(self) this = self;
 
-  static public function lift<Pi,Pii>(self:EitherSum<Pi,Pii>):Either<Pi,Pii> return new Either(self);
+  @:noUsing static public function lift<Pi,Pii>(self:EitherSum<Pi,Pii>):Either<Pi,Pii> return new Either(self);
   
 
   @:noUsing inline static public function left<Ti,Tii>(tI:Ti):Either<Ti,Tii>{

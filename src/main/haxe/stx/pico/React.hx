@@ -8,7 +8,7 @@ abstract class ReactCls implements ReactApi{
 }
 @:forward abstract React(ReactApi) from ReactApi to ReactApi{
   public function new(self) this = self;
-  static public function lift(self:ReactApi):React return new React(self);
+  @:noUsing static public function lift(self:ReactApi):React return new React(self);
 
   public function prj():ReactApi return this;
   private var self(get,never):React;

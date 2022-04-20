@@ -171,7 +171,7 @@ class ErrorBase<E> extends Error<E>{
   #end
 }
 class ErrorException extends Error<String>{
-  static public function make(exception:haxe.Exception,lst:Option<Error<String>>,pos:Option<Pos>){
+  @:noUsing static public function make(exception:haxe.Exception,lst:Option<Error<String>>,pos:Option<Pos>){
     return new ErrorException(exception,lst,pos);
   }
   public function new(exception:haxe.Exception,lst:Option<Error<String>>,pos:Option<Pos>){
