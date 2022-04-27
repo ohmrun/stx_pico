@@ -48,11 +48,11 @@ typedef Identifier              = stx.pico.Identifier;
 
 typedef OptionUsing             = stx.pico.Option.OptionLift;
 
-typedef Error<E>                = stx.pico.Error<E>;
-typedef ErrorDef<E>             = stx.pico.Error.ErrorDef<E>;
-typedef ErrorApi<E>             = stx.pico.Error.ErrorApi<E>;
-typedef ErrorBase<E>            = stx.pico.Error.ErrorBase<E>;
-typedef ErrorException          = stx.pico.Error.ErrorException;
+// typedef Error<E>                = stx.pico.Error<E>;
+// typedef ErrorDef<E>             = stx.pico.Error.ErrorDef<E>;
+// typedef ErrorApi<E>             = stx.pico.Error.ErrorApi<E>;
+// typedef ErrorBase<E>            = stx.pico.Error.ErrorBase<E>;
+// typedef ErrorException          = stx.pico.Error.ErrorException;
 
 typedef Apply<P,R>              = stx.pico.Apply<P,R>;
 typedef ApplyCls<P,R>           = stx.pico.Apply.ApplyCls<P,R>;
@@ -68,7 +68,6 @@ typedef ReactApi                = stx.pico.React.ReactApi;
 
 
 typedef ArrayLift               = stx.lift.ArrayLift;
-typedef ErrorLift               = stx.lift.ErrorLift;
 typedef IteratorLift            = stx.lift.IteratorLift;
 typedef IterableLift            = stx.lift.IterableLift;
 

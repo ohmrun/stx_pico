@@ -104,8 +104,8 @@ class Plugin{
     return macro {};
   }
   #if macro
-    static public function delazy(type:Type){
-      return switch()
-    }
+    // static public function delazy(type:Type){
+    //   return switch()
+    // }
   #end
 }

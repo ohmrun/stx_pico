@@ -1,83 +1,147 @@
 {
-  "version" : "1",
-  "build" : {
-    "-lib" : [],
-    "-cp" : ["src/main/haxe"],
-    "unit" : {
-      "--macro" : [
+  "version": "1",
+  "build": {
+    "-D": [
+      "--no-deprecation-warnings"
+    ],
+    "-lib": [],
+    "-cp": [
+      "src/main/haxe"
+    ],
+    "unit": {
+      "--macro": [
         "include('stx.Pico',true)",
         "include('stx.pico',true,['stx.pico.Plugin'])"
       ],
-      "interp"  : {
-        "--interp" : true
+      "interp": {
+        "--interp": true
       },
-      "cpp"  : {
-        "--verbose" : true,
-        "--cpp" : "build/unit/cpp"
+      "cpp": {
+        "--verbose": true,
+        "--cpp": "build/unit/cpp"
       },
-      "java"  : {
-        "--java" : "build/unit/java"
+      "java": {
+        "--java": "build/unit/java"
       },
-      "hl"  : {
-        "--hl" : "build/unit/hl/main.hl"
+      "hl": {
+        "--hl": "build/unit/hl/main.hl"
       },
-      "php"  : {
-        "--php" : "build/unit/php"
+      "php": {
+        "--php": "build/unit/php"
       },
-      "python"  : {
-        "--python" : "build/unit/python/main.py"
+      "python": {
+        "--python": "build/unit/python/main.py"
       },
-      "lua"  : {
-        "--lua" : "build/unit/lua/main.lua"
+      "lua": {
+        "--lua": "build/unit/lua/main.lua"
       },
-      "cs"  : {
-        "--cs" : "build/unit/cs"
+      "cs": {
+        "--cs": "build/unit/cs"
       },
-      "jvm"  : {
-        "--jvm" : "build/unit/jvm/main.jar"
+      "jvm": {
+        "--jvm": "build/unit/jvm/main.jar"
       }
     },
-    "test" : {
-      "-lib" : ["stx_test","stx_nano","stx_log"],
-      "-main" : "stx.pico.Test",
-      "interp" : {
-        "--interp" : true
+    "test": {
+      "-lib": [
+        "stx_test",
+        "stx_nano",
+        "stx_log"
+      ],
+      "-main": "stx.pico.Test",
+      "interp": {
+        "--interp": true
       },
-      "hashlink" : {
-        "-hl"   : "build/test/hl/main.hl" 
+      "hl": {
+        "-main": "stx.hl.Test",
+        "-hl": "build/test/hl/main.hl"
       },
-      "js" : {
-        "-D"    : ["js-unflatten"],
-        "-js"   : "build/test/js/main.js"
+      "js": {
+        "-D": [
+          "js-unflatten"
+        ],
+        "-js": "build/test/js/main.js"
       }
     },
-    "main" : {
-      "-main" : "Main",
-      "interp" : {
-        "--interp" : true
+    "main": {
+      "-main": "Main",
+      "interp": {
+        "--interp": true
       }
     },
-    "library" : {
-      "python" : {
-        "stx.pico.Option" : "",
-        "-python"   : "build/test/python/main.js"
+    "library": {
+      "python": {
+        "stx.pico.Option": "",
+        "-python": "build/test/python/main.js"
       }
     }
   },
-  "run" : {
-    "unit"      : [
-      ["hx", "build","unit/cpp"],
-      ["hx", "build","unit/java"],
-      ["hx", "build","unit/hl"],
-      ["hx", "build","unit/php"],
-      ["hx", "build","unit/python"],
-      ["hx", "build","unit/lua"],
-      ["hx", "build","unit/cs"],
-      ["hx", "build","unit/jvm"]
+  "run": {
+    "unit": [
+      [
+        "hx",
+        "build",
+        "unit/cpp"
+      ],
+      [
+        "hx",
+        "build",
+        "unit/java"
+      ],
+      [
+        "hx",
+        "build",
+        "unit/hl"
+      ],
+      [
+        "hx",
+        "build",
+        "unit/php"
+      ],
+      [
+        "hx",
+        "build",
+        "unit/python"
+      ],
+      [
+        "hx",
+        "build",
+        "unit/lua"
+      ],
+      [
+        "hx",
+        "build",
+        "unit/cs"
+      ],
+      [
+        "hx",
+        "build",
+        "unit/jvm"
+      ]
     ],
-    "hashlink"  : [["hl","build/test/hl/main.hl"]],
-    "test::js"  : [
-      ["hx","build","test/js"]
+    "hashlink": [
+      [
+        "hl",
+        "build/test/hl/main.hl"
+      ]
+    ],
+    "test::js": [
+      [
+        "hx",
+        "build",
+        "test/js"
+      ]
+    ],
+    "test::hl": [
+      [
+        "hx",
+        "build",
+        "test/hl"
+      ],
+      [
+        "hl",
+        "build/test/hl/main.hl"
+      ]
     ]
   }
 }
