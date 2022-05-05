@@ -22,7 +22,20 @@ abstract class StxMemberCls extends Clazz{
     haxe.PosInfos;
   #end
 typedef Pos                     = PosDef;
-
+class PosLift{
+  static public function toString(pos:Pos){
+    if (pos == null) return '<no_pos>';
+    #if !macro
+      var f   = pos.fileName;
+      var cls = pos.className;
+      var fn  = pos.methodName;
+      var ln  = pos.lineNumber;
+      return '$f:$ln';
+    #else
+      return '$pos';
+    #end
+  }
+}
 typedef StdArray<T>             = std.Array<T>;
 typedef StdString               = std.String;
 typedef StdInt                  = Int;
@@ -30,7 +43,9 @@ typedef StdFloat                = Float;
 typedef StdBool                 = Bool;
 typedef StdDate                 = Date;
 typedef StdOption<T>            = haxe.ds.Option<T>;
+typedef StdEnum<T>              = Enum<T>;
 typedef StdEnumValue            = std.EnumValue;
+typedef StdDynamic              = Dynamic;
 
 typedef OptionSum<T>            = stx.pico.Option.OptionSum<T>;//Publish Constructors.
 typedef Option<T>               = stx.pico.Option<T>;
