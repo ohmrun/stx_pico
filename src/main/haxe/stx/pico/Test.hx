@@ -11,7 +11,7 @@ import stx.pico.test.*;
 class Test{
   #if stx_test
   static public function main(){
-    // __.test(
+    // __.test().run(
     //   [new Issue1()],
     //   []
     // );

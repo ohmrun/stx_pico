@@ -2,7 +2,7 @@
   "version": "1",
   "build": {
     "-D": [
-      "--no-deprecation-warnings"
+      "no-deprecation-warnings"
     ],
     "-lib": [],
     "-cp": [
@@ -42,10 +42,18 @@
         "--jvm": "build/unit/jvm/main.jar"
       }
     },
+    "hashlink" : {
+      "--macro": [
+        "include('stx.Pico',true)"
+      ],
+      "-main": "stx.hl.Test",
+      "-hl": "build/hashlink/main.hl"
+    },  
     "test": {
       "-lib": [
         "stx_test",
         "stx_nano",
+      
         "stx_log"
       ],
       "-main": "stx.pico.Test",

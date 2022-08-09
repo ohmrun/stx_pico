@@ -4,10 +4,13 @@ package stx.pico;
 @:using(stx.pico.Option.OptionLift)
 typedef OptionSum<T> = haxe.ds.Option<T>;
 
+//abstract Tag(stx.Pico.Tag) from stx.Pico.Tag{}
+
 @:expose
 @:using(stx.pico.Option.OptionLift)
 abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
-  static public var __(default,never) = OptionLift;
+  static public var __(default,never)                                 = OptionLift;
+  //static public var tag(default,never) : stx.pico.Option.Tag          = Tag;
 
   public function new(self) {
     this = self;

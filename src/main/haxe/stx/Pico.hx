@@ -3,8 +3,8 @@ package stx;
 import haxe.CallStack;
 import haxe.Exception;
 
-class Pico{
-  
+enum Pico{
+  Pico;
 }
 interface StxMemberApi{
   public var stx_tag(get,null) : Int;
@@ -49,6 +49,7 @@ typedef StdDynamic              = Dynamic;
 
 typedef OptionSum<T>            = stx.pico.Option.OptionSum<T>;//Publish Constructors.
 typedef Option<T>               = stx.pico.Option<T>;
+typedef OptionLift              = stx.pico.Option.OptionLift;
 
 typedef EitherSum<Ti,Tii>       = stx.pico.Either.EitherSum<Ti,Tii>;
 typedef Either<Ti,Tii>          = stx.pico.Either<Ti,Tii>;
@@ -60,8 +61,6 @@ typedef Outcome<T,E>            = stx.pico.Outcome<T,E>;
 typedef Clazz                   = stx.pico.Clazz;
 typedef IFaze                   = stx.pico.IFaze;
 typedef Identifier              = stx.pico.Identifier;
-
-typedef OptionUsing             = stx.pico.Option.OptionLift;
 
 // typedef Error<E>                = stx.pico.Error<E>;
 // typedef ErrorDef<E>             = stx.pico.Error.ErrorDef<E>;
@@ -85,6 +84,12 @@ typedef ReactApi                = stx.pico.React.ReactApi;
 typedef ArrayLift               = stx.lift.ArrayLift;
 typedef IteratorLift            = stx.lift.IteratorLift;
 typedef IterableLift            = stx.lift.IterableLift;
+
+enum abstract Tag(Null<Dynamic>){
+  var Tag = null;
+  @:from static function ofAny<T>(t:Null<T>):Tag
+    return Tag;
+}
 
 typedef ExceptionDef            = {
   public var message(get,never):String;

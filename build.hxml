@@ -1,7 +1,0 @@
--lib hx3compat
-
--cp src/main/haxe
-
--main Main
---interp
-#--cpp bin/cpp
