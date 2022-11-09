@@ -1,5 +1,9 @@
 package stx.pico;
 
+#if stx_log
+  using stx.Nano;
+  using stx.Log;
+#end
 class Delay extends 
   #if flash
     stx.pico.delay.term.Flash
@@ -13,7 +17,7 @@ class Delay extends
 {
   static public function comply(op,ms:Int):Delay{
     #if (debug && stx_log)
-      trace('comply $ms');
+      __.log().trace('comply $ms');
     #end
     final delay = new stx.pico.Delay(op,ms);
           delay.start();
