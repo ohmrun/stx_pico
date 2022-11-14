@@ -1,9 +1,5 @@
 package stx.pico;
 
-#if stx_log
-  using stx.Nano;
-  using stx.Log;
-#end
 class Delay extends 
   #if flash
     stx.pico.delay.term.Flash
