@@ -61,7 +61,10 @@ import tink.RunLoop;
         return if(remaining < 0){
           0.1;
         }else{
-          steps * 0.2 * 1.2;
+          final remaining_time   = ((this.ms/1000) + started) - stamp();
+          final default_time     = steps * 0.2 * 1.2;
+          __.log().trace('next_wait: $remaining_time < $default_time = ${remaining_time < default_time}');
+          return remaining_time < default_time ? remaining_time : default_time;
         }
       }
       #if (debug && stx_log)
@@ -106,6 +109,7 @@ import tink.RunLoop;
                 RunLoop.current.delegate(step,RunLoop.current.createSlave());
               }
             }else{
+              __.log().trace('cancel');
               cb(Noise);
             }
           }
