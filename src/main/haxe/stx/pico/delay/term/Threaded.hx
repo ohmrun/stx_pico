@@ -30,7 +30,7 @@ import tink.RunLoop;
       this.cancelled = false; 
     }
     public function cancel(){
-      __.log().debug('cancel');
+      #if (debug && stx_log) __.log().debug('cancel'); #end
       this.cancelled = true;
     }
     public function start(){
@@ -53,7 +53,9 @@ import tink.RunLoop;
       function is_ready(){
         final wanted_time   = (this.ms/1000) + started;
         final current_time  = stamp();
+        #if (debug && stx_log)
         __.log().trace('$current_time >= $wanted_time = ${current_time >= wanted_time}');
+        #end
         return  current_time >= wanted_time;
       } 
       function next_wait(){
@@ -63,7 +65,9 @@ import tink.RunLoop;
         }else{
           final remaining_time   = ((this.ms/1000) + started) - stamp();
           final default_time     = steps * 0.2 * 1.2;
+          #if (debug && stx_log)
           __.log().trace('next_wait: $remaining_time < $default_time = ${remaining_time < default_time}');
+          #end
           return remaining_time < default_time ? remaining_time : default_time;
         }
       }
@@ -92,7 +96,7 @@ import tink.RunLoop;
             #end
             if(!cancelled){
               if(is_ready()){
-                __.log().trace('try: $ms');
+                #if (debug && stx_log) __.log().trace('try: $ms'); #end
                 try{
                   done = true;
                   #if (debug && stx_log)
@@ -109,7 +113,7 @@ import tink.RunLoop;
                 RunLoop.current.delegate(step,RunLoop.current.createSlave());
               }
             }else{
-              __.log().trace('cancel');
+              #if (debug && stx_log) __.log().trace('cancel'); #end
               cb(Noise);
             }
           }
@@ -122,4 +126,5 @@ import tink.RunLoop;
       return haxe.Timer.stamp();
     }
   }
+
 #end

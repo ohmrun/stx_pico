@@ -76,14 +76,21 @@ typedef Comply<Pi,Pii,R>              = stx.pico.Comply<Pi,Pii,R>;
 typedef ComplyCls<Pi,Pii,R>           = stx.pico.Comply.ComplyCls<Pi,Pii,R>;
 typedef ComplyApi<Pi,Pii,R>           = stx.pico.Comply.ComplyApi<Pi,Pii,R>;
 
-typedef React                   = stx.pico.React;
-typedef ReactCls                = stx.pico.React.ReactCls;
-typedef ReactApi                = stx.pico.React.ReactApi;
+typedef React                         = stx.pico.React;
+typedef ReactCls                      = stx.pico.React.ReactCls;
+typedef ReactApi                      = stx.pico.React.ReactApi;
 
+typedef Spend<P>                      = stx.pico.Spend<P>;
+typedef SpendCls<P>                   = stx.pico.Spend.SpendCls<P>;
+typedef SpendApi<P>                   = stx.pico.Spend.SpendApi<P>;
 
-typedef ArrayLift               = stx.lift.ArrayLift;
-typedef IteratorLift            = stx.lift.IteratorLift;
-typedef IterableLift            = stx.lift.IterableLift;
+typedef Reply<R>                      = stx.pico.Reply<R>;
+typedef ReplyCls<R>                   = stx.pico.Reply.ReplyCls<R>;
+typedef ReplyApi<R>                   = stx.pico.Reply.ReplyApi<R>;
+
+typedef ArrayLift                     = stx.lift.ArrayLift;
+typedef IteratorLift                  = stx.lift.IteratorLift;
+typedef IterableLift                  = stx.lift.IterableLift;
 
 enum abstract Tag(Null<Dynamic>){
   var Tag = null;
