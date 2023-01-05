@@ -5,16 +5,16 @@
         "cross",
         "functional"
     ],
-    "description": "The core of stx.core. Stuff you can't do without, but might already have.",
+    "description": "Stuff you can't do without, but might already have.",
     "contributors": [
         "0b1kn00b"
     ],
-    "releasenote": "Array._.last off by one error fixed",
-    "version": "1.1.0",
+    "releasenote": "Uses haxetink scheduler",
+    "version": "2.0.0",
     "url": "https://github.com/ohmrun/stx_pico",
     "dependencies": {
-        "tink_core"         : "git:https://github.com/haxetink/tink_core.git",
-        "tink_runloop"      : "git:https://github.com/haxetink/tink_runloop.git"
+        "tink_core"         : "2.0.2",
+        "tink_runloop"      : "0.1.0"
     },
     "classPath": "src/main/haxe"
 }
