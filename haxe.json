@@ -5,6 +5,7 @@
       "no-deprecation-warnings"
     ],
     "-lib": [
+      "tink_core",
       "tink_runloop"
     ],
     "-cp": [
@@ -13,8 +14,7 @@
     "unit": {
       "--macro": [
         "include('stx.Pico',true)",
-        "include('stx.pico',true,['stx.pico.Plugin'])"
-      ],
+        "include('stx.pico',true,['stx.pico.Plugin'])"],
       "interp": {
         "--interp": true
       },
@@ -46,8 +46,7 @@
     },
     "hashlink" : {
       "--macro": [
-        "include('stx.Pico',true)"
-      ],
+        "include('stx.Pico',true)"],
       "-main": "stx.hl.Test",
       "-hl": "build/hashlink/main.hl"
     },  
@@ -56,8 +55,7 @@
         "stx_test",
         "stx_nano",
       
-        "stx_log"
-      ],
+        "stx_log"],
       "-main": "stx.pico.Test",
       "interp": {
         "--interp": true
@@ -88,70 +86,25 @@
   },
   "run": {
     "unit": [
-      [
-        "hx",
-        "build",
-        "unit/cpp"
-      ],
-      [
-        "hx",
-        "build",
-        "unit/java"
-      ],
-      [
-        "hx",
-        "build",
-        "unit/hl"
-      ],
-      [
-        "hx",
-        "build",
-        "unit/php"
-      ],
-      [
-        "hx",
-        "build",
-        "unit/python"
-      ],
-      [
-        "hx",
-        "build",
-        "unit/lua"
-      ],
-      [
-        "hx",
-        "build",
-        "unit/cs"
-      ],
-      [
-        "hx",
-        "build",
-        "unit/jvm"
-      ]
+      ["hx","build","unit/cpp"],
+      ["hx","build","unit/java"],
+      ["hx","build","unit/hl"],
+      ["hx","build","unit/php"],
+      ["hx","build","unit/python"],
+      ["hx","build","unit/lua"],
+      ["hx","build","unit/cs"],
+      ["hx","build","unit/jvm"]
     ],
     "hashlink": [
-      [
-        "hl",
-        "build/test/hl/main.hl"
-      ]
+      ["hl",
+        "build/test/hl/main.hl"]
     ],
     "test::js": [
-      [
-        "hx",
-        "build",
-        "test/js"
-      ]
+      ["hx","build","test/js"]
     ],
     "test::hl": [
-      [
-        "hx",
-        "build",
-        "test/hl"
-      ],
-      [
-        "hl",
-        "build/test/hl/main.hl"
-      ]
+      ["hx","build","test/hl"],
+      ["hl","build/test/hl/main.hl"]
     ]
   }
 }

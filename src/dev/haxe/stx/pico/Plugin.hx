@@ -29,8 +29,8 @@ class Plugin{
           case TAbstract(t,args) :
             function is_nominal_type(type:Type){
               return switch(type){
-                case TAbstract(_.get().name == t.get())   : true;
-                default                                   : false;
+                case TAbstract(tI,_) if (tI.get().name == '${t.get()}')    : true;
+                default                                             : false;
               }
             }
             //trace(args);
@@ -53,7 +53,7 @@ class Plugin{
             ).defv([])
              .map_filter(
                field -> {
-                 $type(field);
+                //$type(field);
                 // trace(p.printExpr(Context.getTypedExpr(field.expr())));
                  final return_type = switch(Context.follow(field.type)){
                   case TFun(_,ret)  : Option.make(ret);
@@ -78,7 +78,7 @@ class Plugin{
                  }
                  final ntcp   = TPath(tpath);
                  final lift   = macro function lift(data:$ntcp){
-                    return $i{type.toComplexType()}.lift(data);
+                    return $i{haxe.macro.TypeTools.toComplexType(type)}.lift(data);
                  }
                  //final next = macro function next(data:$ct,fn:)
                  //trace(wrap);
