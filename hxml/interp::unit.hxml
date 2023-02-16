@@ -1,6 +1,4 @@
--lib tink_core
--lib tink_macro
--lib tink_runloop
+hxml/libs.hxml
 -cp ./src/main/haxe
 
 --macro include('stx.Pico',true)

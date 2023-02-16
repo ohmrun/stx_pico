@@ -11,10 +11,10 @@ import stx.pico.test.*;
 class Test{
   #if stx_test
   static public function main(){
-    // __.test().run(
-    //   [new Issue1()],
-    //   []
-    // );
+    __.test().run(
+      [new Issue1()],
+      []
+    );
   }
   #end
 }
