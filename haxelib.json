@@ -9,12 +9,12 @@
     "contributors": [
         "0b1kn00b"
     ],
-    "releasenote": "Uses haxetink scheduler",
-    "version": "2.0.0",
+    "releasenote": "git dependencies",
+    "version": "2.0.1",
     "url": "https://github.com/ohmrun/stx_pico",
     "dependencies": {
-        "tink_core"         : "2.0.2",
-        "tink_runloop"      : "0.1.0"
+        "tink_core"         : "git:https://github.com/haxetink/tink_core.git",
+        "tink_runloop"      : "git:https://github.com/haxetink/tink_runloop.git"
     },
     "classPath": "src/main/haxe"
 }
