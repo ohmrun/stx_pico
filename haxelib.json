@@ -13,8 +13,8 @@
     "version": "2.0.1",
     "url": "https://github.com/ohmrun/stx_pico",
     "dependencies": {
-        "tink_core"         : "git:https://github.com/haxetink/tink_core.git",
-        "tink_runloop"      : "git:https://github.com/haxetink/tink_runloop.git"
+        "tink_core"         : "",
+        "tink_runloop"      : ""
     },
     "classPath": "src/main/haxe"
 }
