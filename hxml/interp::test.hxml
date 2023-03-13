@@ -1,4 +1,0 @@
-hxml/libs.hxml
--lib stx_test
--cp ./src/main/haxe
--main stx.pico.Test

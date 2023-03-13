@@ -1,7 +1,0 @@
-hxml/libs.hxml
--cp ./src/main/haxe
-
---macro include('stx.Pico',true)
---macro include('stx.pico',true)
-
--main Main
