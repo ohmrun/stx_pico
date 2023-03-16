@@ -3,7 +3,7 @@ test.js
 .vscode*
 .history
 bin
-test*
+/test*
 tmp
 /.env.machine
 
