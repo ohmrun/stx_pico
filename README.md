@@ -569,3 +569,14 @@ function and_with<T>(self:Array<T>,that:Array<T>,eq:T->T->Bool):Bool;
 ```haxe
 function rotate<T>(self:Array<T>,num:Int):Array<T>
 ```
+
+# Building / Development
+
+requires [lalochezia](TODO)
+
+## Tasks
+
+### doit
+```
+echo "hello"
+```

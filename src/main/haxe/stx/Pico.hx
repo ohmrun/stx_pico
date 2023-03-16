@@ -36,61 +36,54 @@ class PosLift{
     #end
   }
 }
-typedef StdArray<T>             = std.Array<T>;
-typedef StdString               = std.String;
-typedef StdInt                  = Int;
-typedef StdFloat                = Float;
-typedef StdBool                 = Bool;
-typedef StdDate                 = Date;
-typedef StdOption<T>            = haxe.ds.Option<T>;
-typedef StdEnum<T>              = Enum<T>;
-typedef StdEnumValue            = std.EnumValue;
-typedef StdDynamic              = Dynamic;
+@:dox(hide) @:noCompletion typedef StdArray<T>             = std.Array<T>;
+@:dox(hide) @:noCompletion typedef StdString               = std.String;
+@:dox(hide) @:noCompletion typedef StdInt                  = Int;
+@:dox(hide) @:noCompletion typedef StdFloat                = Float;
+@:dox(hide) @:noCompletion typedef StdBool                 = Bool;
+@:dox(hide) @:noCompletion typedef StdDate                 = Date;
+@:dox(hide) @:noCompletion typedef StdOption<T>            = haxe.ds.Option<T>;
+@:dox(hide) @:noCompletion typedef StdEnum<T>              = Enum<T>;
+@:dox(hide) @:noCompletion typedef StdEnumValue            = std.EnumValue;
+@:dox(hide) @:noCompletion typedef StdDynamic              = Dynamic;
 
-typedef OptionSum<T>            = stx.pico.Option.OptionSum<T>;//Publish Constructors.
-typedef Option<T>               = stx.pico.Option<T>;
-typedef OptionLift              = stx.pico.Option.OptionLift;
+@:dox(hide) @:noCompletion typedef OptionSum<T>            = stx.pico.Option.OptionSum<T>;//Publish Constructors.
+@:dox(hide) @:noCompletion typedef Option<T>               = stx.pico.Option<T>;
+@:dox(hide) @:noCompletion typedef OptionLift              = stx.pico.Option.OptionLift;
 
-typedef EitherSum<Ti,Tii>       = stx.pico.Either.EitherSum<Ti,Tii>;
-typedef Either<Ti,Tii>          = stx.pico.Either<Ti,Tii>;
-//typedef EitherUsing             = stx.pico.Either.EitherUsing;
+@:dox(hide) @:noCompletion typedef EitherSum<Ti,Tii>       = stx.pico.Either.EitherSum<Ti,Tii>;
+@:dox(hide) @:noCompletion typedef Either<Ti,Tii>          = stx.pico.Either<Ti,Tii>;
 
-typedef OutcomeSum<T,E>         = stx.pico.Outcome.OutcomeSum<T,E>;
-typedef Outcome<T,E>            = stx.pico.Outcome<T,E>;
+@:dox(hide) @:noCompletion typedef OutcomeSum<T,E>         = stx.pico.Outcome.OutcomeSum<T,E>;
+@:dox(hide) @:noCompletion typedef Outcome<T,E>            = stx.pico.Outcome<T,E>;
 
-typedef Clazz                   = stx.pico.Clazz;
-typedef IFaze                   = stx.pico.IFaze;
-typedef Identifier              = stx.pico.Identifier;
+@:dox(hide) @:noCompletion typedef Clazz                   = stx.pico.Clazz;
+@:dox(hide) @:noCompletion typedef IFaze                   = stx.pico.IFaze;
+@:dox(hide) @:noCompletion typedef Identifier              = stx.pico.Identifier;
 
-// typedef Error<E>                = stx.pico.Error<E>;
-// typedef ErrorDef<E>             = stx.pico.Error.ErrorDef<E>;
-// typedef ErrorApi<E>             = stx.pico.Error.ErrorApi<E>;
-// typedef ErrorBase<E>            = stx.pico.Error.ErrorBase<E>;
-// typedef ErrorException          = stx.pico.Error.ErrorException;
+@:dox(hide) @:noCompletion typedef Apply<P,R>              = stx.pico.Apply<P,R>;
+@:dox(hide) @:noCompletion typedef ApplyCls<P,R>           = stx.pico.Apply.ApplyCls<P,R>;
+@:dox(hide) @:noCompletion typedef ApplyApi<P,R>           = stx.pico.Apply.ApplyApi<P,R>;
 
-typedef Apply<P,R>              = stx.pico.Apply<P,R>;
-typedef ApplyCls<P,R>           = stx.pico.Apply.ApplyCls<P,R>;
-typedef ApplyApi<P,R>           = stx.pico.Apply.ApplyApi<P,R>;
+@:dox(hide) @:noCompletion typedef Comply<Pi,Pii,R>              = stx.pico.Comply<Pi,Pii,R>;
+@:dox(hide) @:noCompletion typedef ComplyCls<Pi,Pii,R>           = stx.pico.Comply.ComplyCls<Pi,Pii,R>;
+@:dox(hide) @:noCompletion typedef ComplyApi<Pi,Pii,R>           = stx.pico.Comply.ComplyApi<Pi,Pii,R>;
 
-typedef Comply<Pi,Pii,R>              = stx.pico.Comply<Pi,Pii,R>;
-typedef ComplyCls<Pi,Pii,R>           = stx.pico.Comply.ComplyCls<Pi,Pii,R>;
-typedef ComplyApi<Pi,Pii,R>           = stx.pico.Comply.ComplyApi<Pi,Pii,R>;
+@:dox(hide) @:noCompletion typedef React                         = stx.pico.React;
+@:dox(hide) @:noCompletion typedef ReactCls                      = stx.pico.React.ReactCls;
+@:dox(hide) @:noCompletion typedef ReactApi                      = stx.pico.React.ReactApi;
 
-typedef React                         = stx.pico.React;
-typedef ReactCls                      = stx.pico.React.ReactCls;
-typedef ReactApi                      = stx.pico.React.ReactApi;
+@:dox(hide) @:noCompletion typedef Spend<P>                      = stx.pico.Spend<P>;
+@:dox(hide) @:noCompletion typedef SpendCls<P>                   = stx.pico.Spend.SpendCls<P>;
+@:dox(hide) @:noCompletion typedef SpendApi<P>                   = stx.pico.Spend.SpendApi<P>;
 
-typedef Spend<P>                      = stx.pico.Spend<P>;
-typedef SpendCls<P>                   = stx.pico.Spend.SpendCls<P>;
-typedef SpendApi<P>                   = stx.pico.Spend.SpendApi<P>;
+@:dox(hide) @:noCompletion typedef Reply<R>                      = stx.pico.Reply<R>;
+@:dox(hide) @:noCompletion typedef ReplyCls<R>                   = stx.pico.Reply.ReplyCls<R>;
+@:dox(hide) @:noCompletion typedef ReplyApi<R>                   = stx.pico.Reply.ReplyApi<R>;
 
-typedef Reply<R>                      = stx.pico.Reply<R>;
-typedef ReplyCls<R>                   = stx.pico.Reply.ReplyCls<R>;
-typedef ReplyApi<R>                   = stx.pico.Reply.ReplyApi<R>;
-
-typedef ArrayLift                     = stx.lift.ArrayLift;
-typedef IteratorLift                  = stx.lift.IteratorLift;
-typedef IterableLift                  = stx.lift.IterableLift;
+@:dox(hide) @:noCompletion typedef ArrayLift                     = stx.lift.ArrayLift;
+@:dox(hide) @:noCompletion typedef IteratorLift                  = stx.lift.IteratorLift;
+@:dox(hide) @:noCompletion typedef IterableLift                  = stx.lift.IterableLift;
 
 enum abstract Tag(Null<Dynamic>){
   var Tag = null;

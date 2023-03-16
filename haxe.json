@@ -51,6 +51,9 @@
       "-hl": "build/hashlink/main.hl"
     },  
     "test": {
+      "-cp": [
+        "src/test/haxe"
+      ],
       "-lib": [
         "stx_test",
         "stx_nano",
@@ -64,6 +67,10 @@
         "-main": "stx.hl.Test",
         "-hl": "build/test/hl/main.hl"
       },
+      "neko": {
+        "-main" : "stx.hl.Test",
+        "-neko" : "build/test/hl/neko.n"
+      },
       "js": {
         "-D": [
           "js-unflatten"
@@ -75,6 +82,14 @@
       "-main": "Main",
       "interp": {
         "--interp": true
+      }
+    },
+    "docs" : {
+      "--macro" : "include('stx.pico',true)",
+      "--no-output" : true,
+      "neko" : {
+        "-xml" : "build/doc/src/neko.xml",
+        "-neko" : "dummy.n"
       }
     },
     "library": {
