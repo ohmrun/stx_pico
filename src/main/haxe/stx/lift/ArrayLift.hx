@@ -311,6 +311,12 @@ class ArrayLift{
 
     return r;
   }
+  /**
+   * Alias of `Array.#slice`
+   * @param self 
+   * @param p 
+   * @return Array<T>
+   */
   static public function range<T>(self:StdArray<T>,l:Int,?r:Int):Array<T>{
     return self.slice(l,r);
   }
