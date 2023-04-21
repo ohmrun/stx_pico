@@ -1,6 +1,5 @@
 package stx.pico;
 
-
 @:using(stx.pico.Option.OptionLift)
 typedef OptionSum<T> = haxe.ds.Option<T>;
 
