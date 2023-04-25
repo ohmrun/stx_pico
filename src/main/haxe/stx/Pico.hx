@@ -36,7 +36,7 @@ class PosLift{
     #end
   }
 }
-@:dox(hide) @:noCompletion typedef Noise                          = tink.core.Noise;
+@:dox(hide) @:noCompletion typedef Nada                           = stx.pico.Nada;
 @:dox(hide) @:noCompletion typedef StdArray<T>                    = std.Array<T>;
 @:dox(hide) @:noCompletion typedef StdString                      = std.String;
 @:dox(hide) @:noCompletion typedef StdInt                         = Int;

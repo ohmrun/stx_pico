@@ -6,7 +6,7 @@ class Delay extends
   #elseif js
     stx.pico.delay.term.Javascript
   #elseif target.threaded
-    stx.pico.delay.term.Threaded
+    stx.pico.delay.term.Haxe
   #else
     stx.pico.delay.term.Ignore
   #end

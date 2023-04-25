@@ -1,7 +1,6 @@
 package stx.pico.delay.term;
 
-import tink.core.Noise;
-
+#if tink_runloop
 import tink.RunLoop;
 #if target.threaded
   import sys.thread.Thread in HThread;
@@ -10,7 +9,7 @@ import tink.RunLoop;
   typedef Milliseconds  = Int;
   typedef Seconds       = Float;
 
-  class Threaded{
+  class Tink{
     static public var pool(get,null) : sys.thread.ElasticThreadPool;
     static public function get_pool(){
       return pool == null ? pool = new sys.thread.ElasticThreadPool(30) : pool; 
@@ -103,7 +102,7 @@ import tink.RunLoop;
                   __.log().trace('ready');
                   #end
                   op();
-                  cb(Noise);
+                  cb(Nada);
                 }catch(e){
                   haxe.MainLoop.runInMainThread(
                     () -> throw(e)
@@ -114,10 +113,10 @@ import tink.RunLoop;
               }
             }else{
               #if (debug && stx_log) __.log().trace('cancel'); #end
-              cb(Noise);
+              cb(Nada);
             }
           }
-          return Noise;
+          return Nada;
         },
         RunLoop.current.createSlave()
       );
@@ -127,4 +126,5 @@ import tink.RunLoop;
     }
   }
 
+#end
 #end
