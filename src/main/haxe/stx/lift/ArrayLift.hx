@@ -4,6 +4,9 @@ import haxe.Constraints.IMap;
 
 using stx.Pico;
 
+/**
+ * Static extensions for Arrays
+ */
 class ArrayLift{
   /**
     * Produces an Array from an Array of Arrays.

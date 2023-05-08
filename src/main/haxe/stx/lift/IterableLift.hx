@@ -34,4 +34,11 @@ class IterableLift{
       }
     );
   }
+  static public function size<T>(self:Iterable<T>):Int{
+    var res = 0;
+    for(i in self){
+      res = res + 1;
+    }
+    return res;
+  }
 }
