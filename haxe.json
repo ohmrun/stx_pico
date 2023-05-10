@@ -5,8 +5,7 @@
       "no-deprecation-warnings"
     ],
     "-lib": [
-      "tink_core",
-      "tink_runloop"
+      "tink_core"
     ],
     "-cp": [
       "src/main/haxe"

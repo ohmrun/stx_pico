@@ -8,6 +8,10 @@ typedef OptionSum<T> = haxe.ds.Option<T>;
 @:expose
 @:using(stx.pico.Option.OptionLift)
 abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
+  /**
+   * Applicative functions
+   */
+  @stx.meta.using
   static public var __(default,never)                                 = OptionLift;
   //static public var tag(default,never) : stx.pico.Option.Tag          = Tag;
 
@@ -27,15 +31,6 @@ abstract Option<T>(OptionSum<T>) from OptionSum<T> to OptionSum<T>{
 	**/
   @:noUsing static public function make<T>(t: T): Option<T> {
     return if (t == null) unit(); else pure(t);
-  }
-  /**
-	 * Produces an Option where `self` may contain another Option.
-	**/
-  static public function flatten<T>(self: Option<Option<T>>): Option<T> {
-    return switch (self.prj()) {
-      case None       : None;
-      case Some(next) : next;
-    }
   }
   public function toString(){
     return __.toString(this);
@@ -73,13 +68,6 @@ class OptionLift{
 	**/
   static public function or<T>(self: OptionSum<T>, thunk: Void -> OptionSum<T>): Option<T> {
     return fold(self,Some,thunk);
-  }
-  static public function either<Ti,Tii>(self:OptionSum<Ti>,fn:Void->Tii):Either<Ti,Tii>{
-    return fold(
-      self,
-      x -> Left(x),
-      () -> Right(fn())
-    );
   }
   /**
    * returns `None` if filter returns `false`, `Some(t:T)` otherwise.
@@ -159,5 +147,15 @@ class OptionLift{
       ()  -> '<undefined>'
     );
   }
+  /**
+	 * Produces an Option where `self` may contain another Option.
+	**/
+  static public function flatten<T>(self: Option<Option<T>>): Option<T> {
+    return switch (self.prj()) {
+      case None       : None;
+      case Some(next) : next;
+    }
+  }
+  @stx.meta.prj
   static public function prj<T>(self:Option<T>):haxe.ds.Option<T>                                 return self;
 }
