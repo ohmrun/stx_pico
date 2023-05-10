@@ -1,0 +1,6 @@
+-cp src/main/haxe
+-lib tink_core
+-lib tink_runloop
+-D no-deprecation-warnings
+--macro include('stx.Pico',true)
+--macro include('stx.pico',true,['stx.pico.Plugin'])
