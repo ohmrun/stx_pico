@@ -46,7 +46,6 @@ class PosLift{
 @:dox(hide) @:noCompletion typedef StdDate                        = Date;
 @:dox(hide) @:noCompletion typedef StdOption<T>                   = haxe.ds.Option<T>;
 @:dox(hide) @:noCompletion typedef StdEnum<T>                     = Enum<T>;
-@:dox(hide) @:noCompletion typedef StdEnumValue                   = std.EnumValue;
 @:dox(hide) @:noCompletion typedef StdDynamic                     = Dynamic;
 
 @:dox(hide) @:noCompletion typedef OptionSum<T>                   = stx.pico.Option.OptionSum<T>;//Publish Constructors.
