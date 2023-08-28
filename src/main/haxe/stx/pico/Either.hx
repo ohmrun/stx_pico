@@ -11,24 +11,6 @@ typedef EitherSum<Ti,Tii>       = haxe.ds.Either<Ti,Tii>;
 
   @:noUsing static public function lift<Pi,Pii>(self:EitherSum<Pi,Pii>):Either<Pi,Pii> return new Either(self);
   
-  /**
-   * Create a `Left` value.
-   * @param self 
-   * @param fn 
-   * @return Either<Ti,R>
-   */
-  @:noUsing static public function left<Ti,Tii>(tI:Ti):Either<Ti,Tii>{
-    return Left(tI);
-  }
-  /**
-   * Create a `Right` value.
-   * @param self 
-   * @param fn 
-   * @return Either<Ti,R>
-   */
-  @:noUsing inline static public function right<Ti,Tii>(tII:Tii):Either<Ti,Tii>{
-    return Right(tII);
-  }
   @stx.meta.prj
   public function prj():EitherSum<Pi,Pii> return this;
 }
@@ -75,5 +57,17 @@ class EitherLift{
   }
   static public function is_right<Ti,Tii>(self:Either<Ti,Tii>){
     return fold(self,_ -> false,_ -> true);
+  }
+  static public function left<Ti,Tii>(self:haxe.ds.Either<Ti,Tii>):Option<Ti>{
+    return fold(self,
+      Some,
+      (_) -> None 
+    );
+  }
+  static public function right<Ti,Tii>(self:haxe.ds.Either<Ti,Tii>):Option<Tii>{
+    return fold(self,
+      (_) -> None,
+      Some
+    );
   }
 }

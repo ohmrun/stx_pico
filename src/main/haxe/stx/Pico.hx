@@ -54,6 +54,7 @@ class PosLift{
 
 @:dox(hide) @:noCompletion typedef EitherSum<Ti,Tii>              = stx.pico.Either.EitherSum<Ti,Tii>;
 @:dox(hide) @:noCompletion typedef Either<Ti,Tii>                 = stx.pico.Either<Ti,Tii>;
+@:dox(hide) @:noCompletion typedef EitherLift                     = stx.pico.Either.EitherLift;
 
 @:dox(hide) @:noCompletion typedef OutcomeSum<T,E>                = stx.pico.Outcome.OutcomeSum<T,E>;
 @:dox(hide) @:noCompletion typedef Outcome<T,E>                   = stx.pico.Outcome<T,E>;
