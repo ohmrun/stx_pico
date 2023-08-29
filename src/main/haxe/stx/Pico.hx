@@ -83,6 +83,9 @@ class PosLift{
 @:dox(hide) @:noCompletion typedef ReplyCls<R>                    = stx.pico.Reply.ReplyCls<R>;
 @:dox(hide) @:noCompletion typedef ReplyApi<R>                    = stx.pico.Reply.ReplyApi<R>;
 
+typedef Embed<T>                = stx.pico.Embed<T>;
+
+
 @:dox(hide) @:noCompletion typedef ArrayLift                      = stx.lift.ArrayLift;
 @:dox(hide) @:noCompletion typedef IteratorLift                   = stx.lift.IteratorLift;
 @:dox(hide) @:noCompletion typedef IterableLift                   = stx.lift.IterableLift;
