@@ -1,4 +1,24 @@
 
+<a name="v2.2.0"></a>
+## [v2.2.0](https://github.com/ohmrun/stx_pico/compare/v2.1.2...v2.2.0) (2023-08-29)
+
+### Doc
+
+* CHANGELOG.md
+
+### Feat
+
+* moved Embed from nano
+
+### Fix
+
+* remove delay, Option._.Either
+
+### Repo
+
+* pull in .chglog
+
+
 <a name="v2.1.2"></a>
 ## [v2.1.2](https://github.com/ohmrun/stx_pico/compare/v2.0.0...v2.1.2) (2023-05-08)
 
