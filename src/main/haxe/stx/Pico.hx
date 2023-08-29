@@ -36,7 +36,9 @@ class PosLift{
     #end
   }
 }
+#if tink_core
 @:dox(hide) @:noCompletion typedef Future<T>                      = tink.core.Future<T>;
+#end
 @:dox(hide) @:noCompletion typedef Nada                           = stx.pico.Nada;
 @:dox(hide) @:noCompletion typedef StdArray<T>                    = std.Array<T>;
 @:dox(hide) @:noCompletion typedef StdString                      = std.String;
