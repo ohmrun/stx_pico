@@ -1,4 +1,4 @@
 unit:
-  hx build unit
+  hb build unit
 dox: 
   haxelib run dox 

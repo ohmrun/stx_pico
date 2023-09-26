@@ -16,6 +16,9 @@ abstract Identifier(String) to String{
   @:noUsing static public function lift(data:String){
     return new Identifier(data);
   }
+  @:noUsing static public function pure(self:String){
+    return new Identifier(self);
+  }
   public function new(data) this = data;
 
   public var name(get,never):String;
