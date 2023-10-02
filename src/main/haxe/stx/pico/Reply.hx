@@ -1,10 +1,10 @@
 package stx.pico;
 
 interface ReplyApi<R>{
-  public function react():Void;
+  public function reply():R;
 }
 abstract class ReplyCls<R> implements ReplyApi<R>{
-  abstract public function reply():Void;
+  abstract public function reply():R;
 }
 @:forward abstract Reply<R>(ReplyApi<R>) from ReplyApi<R> to ReplyApi<R>{
   public function new(self) this = self;
