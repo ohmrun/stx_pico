@@ -1,4 +1,13 @@
 
+<a name="v2.3.0"></a>
+## [v2.3.0](https://github.com/ohmrun/stx_pico/compare/v2.2.1...v2.3.0) (2023-10-02)
+
+### Fix
+
+* Reply signature
+* tink
+
+
 <a name="v2.2.1"></a>
 ## [v2.2.1](https://github.com/ohmrun/stx_pico/compare/v2.2.0...v2.2.1) (2023-08-29)
 
