@@ -1,5 +1,7 @@
 package stx.pico;
 
+import haxe.exceptions.PosException;
+
 @:using(stx.pico.Option.OptionLift)
 typedef OptionSum<T> = haxe.ds.Option<T>;
 
@@ -134,10 +136,10 @@ class OptionLift{
       case Some(v): [v];
     }
   }
-  static public function fudge<T>(self:Option<T>,?err:Dynamic):T{
+  static public function fudge<T>(self:Option<T>,?err:Dynamic,?pos:haxe.PosInfos):T{
     return fold(self,
       (x) -> x,
-      ()  -> if(err!=null) throw err else throw 'empty Option'  
+      ()  -> if(err!=null) throw err else throw new PosException('empty Option',null,pos)  
     );
   }
   static public function toString<T>(self:Option<T>){
